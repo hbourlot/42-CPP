@@ -24,10 +24,10 @@ class Fixed {
 		friend 	std::ostream& operator<<(std::ostream& os, const Fixed& other);
 		int		getRawBits ( void ) const;
 		void 	setRawBits ( int const raw );
-
+		float 	toFloat( void ) const;
+		int		toInt( void ) const;
 
 };
 
 
-// Constructor that  takes a const integer as parameter
 #endif
