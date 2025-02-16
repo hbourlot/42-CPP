@@ -1,6 +1,7 @@
 #include "Fixed.hpp"
 
 int main() {
+	
 	Fixed 	a;
 	Fixed  	b(a);
 	Fixed	c;
@@ -8,5 +9,11 @@ int main() {
 
 	c = b;
 
-	c.setValue(42).getValue();
+
+	std::cout << a.getRawBits() << std::endl;
+	std::cout << b.getRawBits() << std::endl;
+	std::cout << c.getRawBits() << std::endl;
+	// c.setValue(42).getValue();
+
+	return 0;
 }
