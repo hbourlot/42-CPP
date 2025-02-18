@@ -58,27 +58,27 @@ std::ostream& operator<<(std::ostream& os, const Fixed& other) {
 }
 // >
 bool Fixed::operator>(const Fixed& other) const {
-	return this->toInt() > other.toInt();
+	return this->toFloat() > other.toFloat();
 }
 // <
 bool Fixed::operator<(const Fixed& other) const {
-	return toInt() < other.toInt();
+	return toFloat() < other.toFloat();
 }
 // <=
 bool Fixed::operator<=(const Fixed& other) const {
-	return toInt() <= other.toInt();
+	return toFloat() <= other.toFloat();
 }
 // >=
 bool Fixed::operator>=(const Fixed& other) const {
-	return toInt() >= other.toInt();
+	return toFloat() >= other.toFloat();
 }
 // ==
 bool Fixed::operator==(const Fixed& other) const {
-	return toInt() == other.toInt();
+	return toFloat() == other.toFloat();
 }
 // !=
 bool Fixed::operator!=(const Fixed& other) const {
-	return toInt() != other.toInt();
+	return toFloat() != other.toFloat();
 }
 // +
 int	Fixed::operator+(const Fixed& other) {

@@ -6,29 +6,31 @@
 class Point {
 
     private:
-        const   int _x;
-        const   int _y;
-        // Anything else useful i can add.
-        Fixed   _fixedX;
-        Fixed   _fixedY;
-
-    public:
+        const   Fixed _x;
+        const   Fixed _y;
+        // Anything else usefull i can add.
+        
+        public:
+        
 
         // Constructor
         Point();
         Point(const float x, const float y);
-        // Point(const Point& other);
-
+        Point(const Point& other);
+        
         // Destructor
         ~Point();
-        // Getter
-        int getX( void );
-        int getY( void );
-
 
         // Assignment operator
-        // Point& operator=(const Point& other);
+        Point   operator=(const Point& other);
+        // Anything else usefull i can add
+
+        // Getter
+        const   Fixed&  getX( void ) const;
+        const   Fixed&  getY( void ) const;
 
 };
+
+bool bsp( Point const a, Point const b, Point const c, Point const point);
 
 #endif
