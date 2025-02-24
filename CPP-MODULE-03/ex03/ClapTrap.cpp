@@ -1,7 +1,12 @@
 #include "ClapTrap.hpp"
 
 // Constructor
-ClapTrap::ClapTrap(std::string name)
+ClapTrap::ClapTrap( void )
+	:  _name("Default"), _hitPoints(10), _energy(10), _attackDmg(0) {
+		std::cout << "ClapTrap default constructor called!" << std::endl;
+	}
+
+ClapTrap::ClapTrap(std::string name) 
 	: _name(name), _hitPoints(10), _energy(10), _attackDmg(0) {
 	std::cout << "ClapTrap constructor called!" << std::endl;
 }
@@ -43,8 +48,13 @@ void ClapTrap::beRepaired(unsigned int amount) {
 	this->_energy -= 1;
 }
 
-// Overload operators
+// Getter
 
+std::string ClapTrap::getName( void ) {
+	return this->_name;
+}
+
+// Overload operators
 ClapTrap& ClapTrap::operator=(const ClapTrap& other) {
 	if (this != &other) {
 		this->_name = other._name;

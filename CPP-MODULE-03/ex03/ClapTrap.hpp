@@ -5,7 +5,7 @@
 
 class ClapTrap {
 
-	private:
+	protected:
 		std::string _name;
 		int 		_hitPoints; // Health representation
 		int			_energy;
@@ -14,6 +14,7 @@ class ClapTrap {
 	public:
 
 	// Constructor
+	ClapTrap( void );
 	ClapTrap(std::string name);
 
 	// Destructor
@@ -24,8 +25,11 @@ class ClapTrap {
 	void	takeDamage( unsigned int amount );
 	void	beRepaired( unsigned int amount );
 
+	// Getter
+	std::string getName( void );
+
 	// Overload operators
-	ClapTrap& operator=(const ClapTrap& other);
+	ClapTrap&	operator=(const ClapTrap& other);
 
 };
 

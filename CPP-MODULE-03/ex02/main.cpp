@@ -1,12 +1,12 @@
 #include "ClapTrap.hpp"
 #include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
 int main() {
 
+	FragTrap one("Hugo");
 
-	ScavTrap scav("Mateus");
-
-	scav.attack("lauana");
+	one.highFivesGuys();
 
 	return 0;
 }
