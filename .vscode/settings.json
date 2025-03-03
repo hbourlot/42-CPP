@@ -65,10 +65,14 @@
 		"type_traits": "cpp",
 		"utility": "cpp",
 		"numbers": "cpp",
-		"cinttypes": "cpp"
+		"cinttypes": "cpp",
+		"complex": "cpp",
+		"iomanip": "cpp",
+		"sstream": "cpp"
 	},
 	"cSpell.words": [
 		"SCAVTRAP",
 		"WRONGANIMAL"
-	]
+	],
+	"C_Cpp.errorSquiggles": "enabled"
 }

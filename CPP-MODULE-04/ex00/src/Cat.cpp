@@ -3,7 +3,7 @@
 
 // Constructor
 Cat::Cat( void )
-	: Animal("Cat") {
+	: Animal("Cat 🐈") {
 		std::cout << "Cat constructor called!" << std::endl;
 }
 

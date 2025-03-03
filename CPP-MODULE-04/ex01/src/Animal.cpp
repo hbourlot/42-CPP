@@ -4,7 +4,7 @@
 // Constructor
 Animal::Animal( void )
 	: type("Default") {
-	std::cout << "Default Animal constructor called!" << std::endl;
+	std::cout << "Default animal constructor called!" << std::endl;
 }
 
 Animal::Animal( std::string type )
@@ -28,11 +28,13 @@ std::string Animal::getType( void ) const {
 }
 
 // Methods
+
 void	Animal::makeSound( void ) const {
 	std::cout << Animal::getType() <<  " make no sound 🚨" << std::endl;
 }
 
 // Operators
+
 Animal& Animal::operator=(const Animal& other) {
 	std::cout << "Animal Assignment operator called!" << std::endl;
 	if (this != &other)

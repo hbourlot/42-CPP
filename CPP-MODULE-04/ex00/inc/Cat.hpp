@@ -16,7 +16,7 @@ class Cat: public Animal {
 		~Cat( void );
 
 	// Methods
-		void makeSound( void ) const;
+		void makeSound( void ) const; // Polymorphism
 };
 
 #endif
