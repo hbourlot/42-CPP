@@ -6,7 +6,7 @@ GREEN 			= \033[1;32m
 CYAN 			= \033[1;36m
 RESET 			= \033[0m
 
-CC 				= g++
+CC 				= c++
 SRCS 			= main.cpp
 OBJS 			= $(SRCS:%.cpp=%.o)
 CPPFLAGS 		= -Wall -Wextra -Werror -std=c++98
@@ -25,7 +25,7 @@ NAME 			= sedIsForLosers
 all:			$(NAME)
 
 $(NAME):		$(OBJS)
-				$(CC) $(CPPFLAGS) $^ -o $@
+				@$(CC) $(CPPFLAGS) $^ -o $@
 
 %.o: 		%.cpp
 			$(eval COMPILED_FILES = $(shell echo $$(($(COMPILED_FILES) + 1))))

@@ -1,5 +1,4 @@
 #include "Phonebook.hpp"
-// #include <math.h>
 
 static void printParameter(std::string source) {
 	int max;
@@ -143,7 +142,7 @@ void PhoneBook::search() {
 					throw std::exception();
 				i++;
 			}
-			index = std::stoi(answer) -1;
+			index = std::atoi(answer.c_str()) -1;
 			if (index >= 0 && index < this->_idx && index >= 0 && index <= 8)
 				return printContact(index);
 		} catch (const std::exception&) {

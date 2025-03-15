@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <string.h>
 
 
 int open_file(const std::string& name, std::ifstream& file) {
@@ -49,8 +50,6 @@ int main(int argc, char *argv[]) {
 	file_name = get_replace_file(argv[1]);
 
 	std::ofstream  file(file_name);
-
-
 
 	while (getline(fd, line)) {
 		write_replace_line(line, argv[2], argv[3]);

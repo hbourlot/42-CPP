@@ -16,6 +16,7 @@ class Zombie {
 		}
 		void announce( void );
 		
+		
 		// SETTER
 		void setName(std::string name);
 

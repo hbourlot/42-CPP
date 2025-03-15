@@ -6,7 +6,7 @@ GREEN 			= \033[1;32m
 CYAN 			= \033[1;36m
 RESET 			= \033[0m
 
-CC 				= g++
+CC 				= c++
 SRCS 			= main.cpp HumanA.cpp Weapon.cpp HumanB.cpp
 OBJS 			= $(SRCS:%.cpp=%.o)
 CPPFLAGS 		= -Wall -Wextra -Werror -std=c++98
@@ -25,7 +25,7 @@ NAME 			= weapons
 all:			$(NAME)
 
 $(NAME):		$(OBJS)
-				$(CC) $(CPPFLAGS) $^ -o $@
+				@$(CC) $(CPPFLAGS) $^ -o $@
 
 %.o: 		%.cpp
 			$(eval COMPILED_FILES = $(shell echo $$(($(COMPILED_FILES) + 1))))
@@ -47,3 +47,6 @@ re:				fclean all
 
 r: 				re all
 				./weapons
+
+v: 				re all
+				valgrind ./weapons
