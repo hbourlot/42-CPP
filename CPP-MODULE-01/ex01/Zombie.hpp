@@ -12,7 +12,7 @@ class Zombie {
 		
 		Zombie() {};
 		~Zombie () {
-			// std::cout  << "adios zombie\n";
+			std::cout  << "adios zombie" << this->_name << std::endl;
 		}
 		void announce( void );
 		

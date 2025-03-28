@@ -3,27 +3,6 @@
 #include <string>
 #include <string.h>
 
-
-int open_file(const std::string& name, std::ifstream& file) {
-	file.open(name);
-
-	if (!file.is_open()) {
-		std::cerr << "Error opening file" << std::endl;
-		return -1;
-	}
-
-	return 0;
-}
-
-std::string get_replace_file(char *argv) {
-	
-	std::string file;
-
-	file = argv;
-	file.append(".replace");
-	return file;
-}
-
 void write_replace_line(std::string& line, const char *to_find, const char *to_replace) {
 	
 	size_t	position = 0;
@@ -37,26 +16,30 @@ void write_replace_line(std::string& line, const char *to_find, const char *to_r
 
 int main(int argc, char *argv[]) {
 	
-	std::ifstream 	fd;
-	std::ofstream 	fd_replace;
+	std::ifstream 	fd_in;
+	std::ofstream 	fd_out;
 	std::string		file_name, line;
 
-
 	if (argc != 4)
-		return 1;
-
-	if (open_file(argv[1], fd))
-		return 1;
-	file_name = get_replace_file(argv[1]);
-
-	std::ofstream  file(file_name);
-
-	while (getline(fd, line)) {
-		write_replace_line(line, argv[2], argv[3]);
-		file << line << std::endl;
+		return std::cout << "Not enough parameters!\n", 1;
+	fd_in.open(argv[1]);
+	if (!fd_in.is_open())
+	{
+		std::cerr << "Error opening file" << std::endl;
+		return (1);
 	}
-	fd.close();
-	fd_replace.close();
+	file_name = argv[1];
+	file_name.append(".replace");
+
+	fd_out.open(file_name.c_str());
+	if (!fd_out.is_open())
+		return (std::cerr << "Error opening file" << std::endl, 1);
+	while (getline(fd_in, line)) {
+		write_replace_line(line, argv[2], argv[3]);
+		fd_out << line << std::endl;
+	}
+	fd_in.close();
+	fd_out.close();
 	
 	return 0;
 }

@@ -7,10 +7,9 @@ void announceHorde(int N, Zombie *horde) {
 	}
 }
 
-
 int main (void) {
 
-	Zombie *horde = zombieHorde(10, "Zezin");
+	Zombie *horde = zombieHorde(10, "Zezinho");
 
 	announceHorde(10, horde);
 	delete[] horde;

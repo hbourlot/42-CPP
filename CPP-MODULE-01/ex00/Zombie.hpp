@@ -11,7 +11,9 @@ class Zombie {
 	public:
 		
 		Zombie( std::string name );
-		~Zombie () {}
+		~Zombie () {
+			std::cout  << "adios zombie" << this->_name << std::endl;
+		}
 		void announce( void );
 
 

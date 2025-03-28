@@ -6,36 +6,41 @@ GREEN 			= \033[1;32m
 CYAN 			= \033[1;36m
 RESET 			= \033[0m
 
-CC 				= c++
-SRCS 			= main.cpp HumanA.cpp Weapon.cpp HumanB.cpp
+CXX 			= c++
+SRCS 			= HumanA.cpp HumanB.cpp Weapon.cpp main.cpp
 OBJS 			= $(SRCS:%.cpp=%.o)
-CPPFLAGS 		= -Wall -Wextra -Werror -std=c++98
+CXXFLAGS 		= -Wall -Wextra -Werror -std=c++98
 COMPILED_FILES	= 0
 
 TOTAL_FILES		= $(words $(OBJS))
 OS				= $(shell uname)
 
-MSG_MAC			= "\r%100s\r[ $(COMPILED_FILES)/$(TOTAL_FILES) $$(($(COMPILED_FILES) * 100 / $(TOTAL_FILES)))%% ] $(ORANGE)Compiling... $<... $(RESET)"
-MSG_LINUX		= "\r%100s\r[ $(COMPILED_FILES)/$(TOTAL_FILES) $$(($(COMPILED_FILES) * 100 / $(TOTAL_FILES)))% ] $(ORANGE)Compiling $<... $(RESET)"
-
 NAME 			= weapons
 
-.PHONY:			all clean fclean re bonus
+
+ifeq ($(OS), Darwin)
+	PRINT_CMD = printf
+	MSG = "\r%100s\r[ $(COMPILED_FILES)/$(TOTAL_FILES) $$(($(COMPILED_FILES) * 100 / $(TOTAL_FILES)))%% ] $(ORANGE)Compiling [$1]... $(RESET)"
+else
+	PRINT_CMD = echo -n
+	MSG = "\r%100s\r[ $(COMPILED_FILES)/$(TOTAL_FILES) $$(($(COMPILED_FILES) * 100 / $(TOTAL_FILES)))% ] $(ORANGE)Compiling [$1]... $(RESET)"
+endif
+
+# Function to print the compilation message
+define print_compile_msg
+	$(eval COMPILED_FILES = $(shell echo $$(($(COMPILED_FILES) + 1))))
+	@$(PRINT_CMD) $(MSG)
+endef
 
 all:			$(NAME)
 
 $(NAME):		$(OBJS)
-				@$(CC) $(CPPFLAGS) $^ -o $@
+				@$(CXX) $(CXXFLAGS) $^ -o $@
+				@echo "$(GREEN)Executable '$(RED)$(NAME)$(GREEN)' created sucXXessfully!$(RESET) ✅"
 
 %.o: 		%.cpp
-			$(eval COMPILED_FILES = $(shell echo $$(($(COMPILED_FILES) + 1))))
-ifeq ($(OS), Darwin)
-			@printf $(MSG_MAC)
-else
-			@echo -n $(MSG_LINUX)
-endif
-			@$(CC) $(CPPFLAGS) -c $< -o $@
-
+			$(call print_compile_msg, $<)
+			@$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
 				@rm -rf $(OBJS)
@@ -45,8 +50,10 @@ fclean:			clean
 
 re:				fclean all
 
-r: 				re all
-				./weapons
+r: 				all
+				./$(NAME)
 
-v: 				re all
-				valgrind ./weapons
+v: 				all
+				valgrind ./$(NAME)
+
+.PHONY:			all clean fclean re bonus

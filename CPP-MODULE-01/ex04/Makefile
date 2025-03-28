@@ -6,10 +6,10 @@ GREEN 			= \033[1;32m
 CYAN 			= \033[1;36m
 RESET 			= \033[0m
 
-CC 				= c++
+CXX 			= c++
 SRCS 			= main.cpp
 OBJS 			= $(SRCS:%.cpp=%.o)
-CPPFLAGS 		= -Wall -Wextra -Werror -std=c++98
+CXXFLAGS 		= -Wall -Wextra -Werror -std=c++98 -pedantic
 COMPILED_FILES	= 0
 
 TOTAL_FILES		= $(words $(OBJS))
@@ -25,7 +25,7 @@ NAME 			= sedIsForLosers
 all:			$(NAME)
 
 $(NAME):		$(OBJS)
-				@$(CC) $(CPPFLAGS) $^ -o $@
+				@$(CXX) $(CXXFLAGS) $^ -o $@
 
 %.o: 		%.cpp
 			$(eval COMPILED_FILES = $(shell echo $$(($(COMPILED_FILES) + 1))))
@@ -34,8 +34,7 @@ ifeq ($(OS), Darwin)
 else
 			@echo -n $(MSG_LINUX)
 endif
-			@$(CC) $(CPPFLAGS) -c $< -o $@
-
+			@$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
 				@rm -rf $(OBJS)
@@ -46,4 +45,4 @@ fclean:			clean
 re:				fclean all
 
 r: 				re all
-				./sedIsForLosers
+				./$(NAME) zezinho
