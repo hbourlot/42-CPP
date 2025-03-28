@@ -4,7 +4,6 @@
 
 const int Fixed::_storeBits = 8;
 
-
 // Constructor
 Fixed::Fixed() : _fixedPointNumber(0) {
 	std::cout << "Default constructor called" << std::endl;
@@ -89,8 +88,8 @@ int Fixed::operator-(const Fixed& other) {
 	return toInt() - other.toInt();
 }
 // *
-int	Fixed::operator*(const Fixed& other) {
-	return toInt() * other.toInt();
+float Fixed::operator*(const Fixed& other) {
+	return toFloat() * other.toFloat();
 }
 // /
 int Fixed::operator/(const Fixed& other) {
@@ -145,13 +144,7 @@ const Fixed& Fixed::max(const Fixed& first, const Fixed& second) {
 }
 
 
-
-
-
-
-
 // Methods
-
 float	Fixed::toFloat( void ) const {
 	return (float)this->_fixedPointNumber / (1 << _storeBits);
 }

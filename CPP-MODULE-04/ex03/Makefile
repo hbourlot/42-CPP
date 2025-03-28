@@ -35,9 +35,24 @@ define print_compile_msg
 	@$(PRINT_CMD) $(MSG)
 endef
 
-NAME 			= Interface
+define clean_func
+	@if [ -d "$(OBJ_DIR)" ]; then \
+		$(PRINT_CMD) "$(ORANGE)Removing '$(OBJ_DIR)' directory...$(RESET) "; \
+		rm -rf $(OBJ_DIR); \
+		rm -rf main.o; \
+		$(PRINT_CMD) "$(GREEN)Removed successfully!$(RESET) ✅\n"; \
+	fi
+endef
 
-.PHONY:			all clean fclean re bonus
+define fclean_func
+	@if [ -f "$(NAME)" ]; then \
+		$(PRINT_CMD) "$(ORANGE)Removing '$(YELLOW)$(NAME)$(ORANGE)' library...$(RESET) "; \
+		rm -f $(NAME); \
+		$(PRINT_CMD) "$(GREEN)Removed successfully!$(RESET) ✅\n"; \
+	fi
+endef
+
+NAME 			= Interface
 
 all:			$(NAME)
 				@echo "$(GREEN)Executable '$(RED)$(NAME)$(GREEN)' created successfully!$(RESET) ✅"
@@ -54,12 +69,11 @@ main.o:			main.cpp  ./inc/
 				$(call print_compile_msg, $<)
 				@$(CC) $(CPPFLAGS) -c $< -Iinc -o $@
 
-
 clean:
-				@rm -rf $(OBJ_DIR) main.o
+				$(call clean_func)
 
 fclean:			clean
-				@rm -rf $(NAME)
+				$(call fclean_func)
 
 re:				fclean all
 
@@ -70,3 +84,5 @@ r: 				re all
 v:				re all
 				valgrind ./$(NAME)
 				@make -s fclean
+
+.PHONY:			all clean fclean re bonus

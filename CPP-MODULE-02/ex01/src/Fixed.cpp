@@ -21,16 +21,13 @@ Fixed::Fixed(const float number) : _fixedPointValue(roundf(number *  (1 << _stor
 	std::cout << "Float constructor called" << std::endl;
 }
 
-
 //Destructor 
 Fixed::~Fixed() {
 	std::cout << "Destructor called" << std::endl;
 	this->_fixedPointValue = 0;
 }
 
-
 // Assignment operator
-
 // =
 Fixed& Fixed::operator=(const Fixed& other) {
 	std::cout << "Copy assignment operator called" << std::endl;
@@ -46,9 +43,7 @@ std::ostream& operator<<(std::ostream& os, const Fixed& other)  {
 	return os;
 }
 
-
 // Public methods
-
 // getter
 int	Fixed::getRawBits() const {
 	std::cout << "getRawBits member function called" << std::endl;

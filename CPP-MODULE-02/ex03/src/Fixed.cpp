@@ -89,8 +89,8 @@ int Fixed::operator-(const Fixed& other) {
 	return toInt() - other.toInt();
 }
 // *
-int	Fixed::operator*(const Fixed& other) {
-	return toInt() * other.toInt();
+float Fixed::operator*(const Fixed& other) {
+	return toFloat() * other.toFloat();
 }
 // /
 int Fixed::operator/(const Fixed& other) {

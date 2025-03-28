@@ -1,9 +1,7 @@
-#ifndef FIXED_HPP
-#define FIXED_HPP
+#pragma once
 
 #include <iostream>
 #include <cmath>
-
 
 class Fixed {
 
@@ -38,7 +36,7 @@ class Fixed {
         bool    operator!=(const Fixed& other) const;
         int     operator+(const Fixed& other);
         int     operator-(const Fixed& other);
-        int     operator*(const Fixed& other);
+        float   operator*(const Fixed& other);
         int     operator/(const Fixed& other);
         Fixed&  operator--( void );
         Fixed&  operator++( void );
@@ -55,5 +53,3 @@ class Fixed {
         float   toFloat( void ) const;
         int     toInt( void ) const;
 };
-
-#endif

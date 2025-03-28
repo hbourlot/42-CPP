@@ -20,7 +20,6 @@ Fixed& Fixed::operator=(const Fixed& other) {
 	return *this;
 }
 
-
 Fixed::~Fixed () {
 	std::cout << "Destructor called" << std::endl;
 }

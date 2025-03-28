@@ -8,10 +8,8 @@ class Point {
     private:
         const   Fixed _x;
         const   Fixed _y;
-        // Anything else usefull i can add.
         
-        public:
-        
+    public:        
 
         // Constructor
         Point();

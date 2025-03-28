@@ -32,5 +32,6 @@ bool bsp( Point const a, Point const b, Point const c, Point const point) {
 
 	if (a1 == 0 || a2 == 0 || a3 == 0)
 		return false;
+
 	return (abc == (a1 + a2 + a3));
 }

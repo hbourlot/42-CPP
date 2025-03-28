@@ -38,7 +38,7 @@ class Fixed {
         bool    operator!=(const Fixed& other) const;
         int     operator+(const Fixed& other);
         int     operator-(const Fixed& other);
-        int     operator*(const Fixed& other);
+        float   operator*(const Fixed& other);
         int     operator/(const Fixed& other);
         Fixed&  operator--( void );
         Fixed&  operator++( void );
