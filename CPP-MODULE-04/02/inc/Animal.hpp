@@ -7,12 +7,12 @@ class Animal {
     protected:
         
         std::string _type;
-
-    public:
-
         Animal();
         Animal(std::string t);
         Animal(const Animal& other);
+
+    public:
+
         virtual ~Animal();
         Animal & operator=(const Animal& other);
 

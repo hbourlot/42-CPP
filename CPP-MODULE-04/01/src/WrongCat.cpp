@@ -19,6 +19,15 @@ WrongCat::WrongCat(const WrongCat& other)
 	std::cout << this->getType() << " (copy constructor)." << std::endl;
 }
 
+WrongCat&	WrongCat::operator=(const WrongCat& other) {
+
+	if (this != &other) {
+		this->setType(other.getType());
+	}
+	std::cout << this->getType() << " (assignment operator=)." << std::endl;
+	return *this;
+}
+
 WrongCat::~WrongCat() {
 	
 	std::cout << this->getType() << " (destructor)." << std::endl;
