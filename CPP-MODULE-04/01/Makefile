@@ -27,7 +27,7 @@ OS				= $(shell uname)
 VALGRIND		= valgrind -s --leak-check=full --show-leak-kinds=all --track-origins=yes --track-fds=yes
 
 
-C_FUNCTIONS		= Animal Dog Cat WrongAnimal WrongCat
+C_FUNCTIONS		= Animal Dog Cat WrongAnimal WrongCat Brain
 SRC_FILES 		= $(addprefix $(SRC_DIR), $(C_FUNCTIONS:=.cpp))
 OBJS_SRC 		= $(addprefix $(OBJ_DIR), $(C_FUNCTIONS:=.o))
 
@@ -38,7 +38,7 @@ MSG 			= "\r%100s\r[ $(COMPILED_FILES)/$(TOTAL_FILES) $$(($(COMPILED_FILES) * 10
 # Function to print the compilation message
 define print_compile_msg
 	$(eval COMPILED_FILES = $(shell echo $$(($(COMPILED_FILES) + 1))))
-	@$(PRINT_CMD) "%400s\r"
+	@$(PRINT_CMD) "%200s\r"
 	@$(PRINT_CMD) $(UP) $(CUT)
 	@$(PRINT_CMD) $(MSG)
 endef
