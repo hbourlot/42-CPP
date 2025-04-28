@@ -2,28 +2,29 @@
 
 #include <iostream>
 #include "AMateria.hpp"
-#include "ICharacter.hpp"
 
-class Character {
+#ifndef nullptr
+# define nullptr NULL
+#endif
 
-    private:
-        AMateria    _slots[4];
-        int         _idx; // If tries to add more than 4 nothing happens
-    public:
+class Character: public ICharacter {
 
-        Character();
-        Character(AMateria materia);
-        Character(const AMateria& other);
-        Character& operator=(const AMateria& other);
-        ~Character();
+	private:
+		std::string	_name;
+		AMateria*	_slots[4];
 
-        std::string const& getName() const;
-        void        equip(AMateria* m);
-        void        unequip(int idx); // Must Not delete the Materia!
-        void        use(int idx, ICharacter& target); // Use the Materia of the 'idx' slot and call AMateria::use()
+	public:
+
+		// Canonical
+		Character();
+		Character(const Character&	other);
+		Character&	operator=(const Character& other);
+		
+		~Character();
+
+		Character(std::string name);
+		std::string const& 	getName() const;
+		void				equip(AMateria*	m);
+		void				unequip(int idx);
+		void				use(int idx, ICharacter& target);
 };
-
-
-// Handle the Materias your character leaves on the floor as you like.
-// Save the addresses before calling unequip(), or anything else, but
-// don’t forget that you have to avoid memory leaks.

@@ -1,17 +1,26 @@
 #pragma once
 
-#include "AMateria.hpp"
+#include "IMateriaSource.hpp"
+#include "Ice.hpp"
+#include "Cure.hpp"
 
-class MateriaSource {
+#ifndef nullptr
+# define nullptr NULL
+#endif
 
-    private:
-        AMateria*   _slots[4];
-        int         idx;
+class MateriaSource: public IMateriaSource {
 
+	private:
 
-    public:
+		AMateria*		_slots[4];
+		bool			isInSlots(AMateria* materia);
 
-        void        learnMateria(AMateria* materia);
-        AMateria*   createMateria(std::string const& type);
+	public:
 
+		MateriaSource();
+		MateriaSource(const MateriaSource& other);
+		MateriaSource&	 operator=(const MateriaSource& other);
+		~MateriaSource();
+		void			learnMateria(AMateria *materia);
+		AMateria*		createMateria(std::string const& type);
 };

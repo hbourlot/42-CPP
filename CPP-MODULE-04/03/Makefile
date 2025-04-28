@@ -8,40 +8,13 @@ RESET 			= \033[0m
 UP				= "\033[A"
 CUT				= "\033[K"
 
-# -- Compiler settings
-CXX				= c++
-CXXFLAGS		= -std=c++98 #-Wall -Wextra -Werror #-Wshadow -Wno-shadow
-NAME			= Brain
-
-# -- Files and directories
-INCLUDE_DIR 	= inc/
-SRC_DIR 		= src/
-OBJ_DIR 		= obj/
-HEADERS_DIR		= inc
-HEADERS			= $(shell find $(HEADERS_DIR) -name "*.hpp")
-
-# -- Variables
-TOTAL_FILES		= $(shell echo $$(($(words $(OBJS_SRC)) + 1)))
-COMPILED_FILES	= 0
-OS				= $(shell uname)
-VALGRIND		= valgrind -s --leak-check=full --show-leak-kinds=all --track-origins=yes --track-fds=yes
-
-
-C_FUNCTIONS		= Animal Dog Cat WrongAnimal WrongCat Brain
-SRC_FILES 		= $(addprefix $(SRC_DIR), $(C_FUNCTIONS:=.cpp))
-OBJS_SRC 		= $(addprefix $(OBJ_DIR), $(C_FUNCTIONS:=.o))
-
-
-PRINT_CMD 		= printf
-MSG 			= "\r%100s\r[ $(COMPILED_FILES)/$(TOTAL_FILES) $$(($(COMPILED_FILES) * 100 / $(TOTAL_FILES)))%% ] $(ORANGE)Compiling [$1]... $(RESET)"
-
 # Function to print the compilation message
 define print_compile_msg
 	$(eval COMPILED_FILES = $(shell echo $$(($(COMPILED_FILES) + 1))))
-	@$(PRINT_CMD) "%200s\r"
-	@$(PRINT_CMD) $(UP) $(CUT)
 	@$(PRINT_CMD) $(MSG)
 endef
+# @$(PRINT_CMD) $(UP) $(CUT)
+# @$(PRINT_CMD) "%150s\r"
 
 # Function to clean
 define clean_func
@@ -66,6 +39,33 @@ define fclean_func
 		$(PRINT_CMD) "$(GREEN)Removed successfully!$(RESET) ✅\n"; \
 	fi
 endef
+
+# -----------------------------------------------
+
+# -- Compiler settings
+CXX				= c++
+CXXFLAGS		= -std=c++98 #-Wall -Wextra -Werror #-Wshadow -Wno-shadow
+NAME			= Material
+
+# -- Files and directories
+INCLUDE_DIR 	= inc/
+SRC_DIR 		= src/
+OBJ_DIR 		= obj/
+HEADERS_DIR		= inc
+HEADERS			= $(shell find $(HEADERS_DIR) -name "*.hpp")
+
+# -- Variables
+TOTAL_FILES		= $(shell echo $$(($(words $(OBJS_SRC)) + 1)))
+COMPILED_FILES	= 0
+OS				= $(shell uname)
+VALGRIND		= valgrind -s --leak-check=full --show-leak-kinds=all --track-origins=yes --track-fds=yes
+PRINT_CMD 		= printf
+MSG 			= "\r%200s\r[ $(COMPILED_FILES)/$(TOTAL_FILES) $$(($(COMPILED_FILES) * 100 / $(TOTAL_FILES)))%% ] $(ORANGE)Compiling [$1]... $(RESET)"
+
+
+C_FUNCTIONS		= AMateria ICharacter Character Cure Ice IMateriaSource MateriaSource
+SRC_FILES 		= $(addprefix $(SRC_DIR), $(C_FUNCTIONS:=.cpp))
+OBJS_SRC 		= $(addprefix $(OBJ_DIR), $(C_FUNCTIONS:=.o))
 
 
 all:				$(NAME)

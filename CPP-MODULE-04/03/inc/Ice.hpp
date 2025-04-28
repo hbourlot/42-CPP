@@ -1,15 +1,24 @@
 #pragma once
+
 #include "AMateria.hpp"
+#include "ICharacter.hpp"
 
-class ice {
+#include <iostream>
 
-    private:
+class Ice: public AMateria {
+
+	private:
+		//		
+
+	public:
+
+		// Canonical
+		Ice();
+		Ice(const Ice&other);
+		Ice& operator=(const Ice& other);
+		~Ice();
 
 
-    public:
-
-        AMateria*   clone();
-        void        use(ICharacter& target);
-
-
+		AMateria*	clone() const;
+		void		use(ICharacter& target);
 };
