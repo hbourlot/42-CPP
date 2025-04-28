@@ -47,7 +47,7 @@ int	main() {
 
 
 	const Animal *an[10];
-	Animal ani;
+	// Animal ani;
 
 	for (int i = 0; i < 10; i++) {
 
