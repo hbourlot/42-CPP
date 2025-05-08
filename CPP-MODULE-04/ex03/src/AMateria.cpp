@@ -30,9 +30,10 @@ AMateria::~AMateria() {
 }
 
 
-
-AMateria::AMateria(std::string const& type) {
-
+AMateria::AMateria(std::string const& type) : _type(type) {
+	
+	std::cout << "AMateria: ";
+	std::cout << AMateria::getType() << " (default constructor)" << std::endl;
 }
 
 std::string const& AMateria::getType() const {
