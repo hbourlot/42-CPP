@@ -1,0 +1,16 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/c++",
+      "-std=c++98",
+      "-c",
+      "-I./inc/",
+      "-o",
+      "obj/src/main.o",
+      "src/main.cpp"
+    ],
+    "directory": "/Users/hugobourlot/Projects/42-CPP/CPP-MODULE-05/ex00",
+    "file": "/Users/hugobourlot/Projects/42-CPP/CPP-MODULE-05/ex00/src/main.cpp",
+    "output": "/Users/hugobourlot/Projects/42-CPP/CPP-MODULE-05/ex00/obj/src/main.o"
+  }
+]
