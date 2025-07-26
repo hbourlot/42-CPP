@@ -8,50 +8,47 @@
 
 class Bureaucrat {
 
-	private:
-		const std::string _name;
-		int _grade; // Range 1 [max] to 150 [min]
+  private:
+	const std::string _name;
+	int _grade; // Range 1 [max] to 150 [min]
 
-	public:
-		// Constructor
-		Bureaucrat(int grade, std::string name);
+  public:
+	// Constructor
+	Bureaucrat(std::string name, int grade);
+	Bureaucrat();
 
-		// Destructor
-		~Bureaucrat();
+	// Destructor
+	~Bureaucrat();
 
-		// Copy constructor
-		Bureaucrat(const Bureaucrat &object);
+	// Copy constructor
+	Bureaucrat(const Bureaucrat &object);
 
-		// Operator =
-		Bureaucrat &operator=(const Bureaucrat &object);
+	// Operator =
+	Bureaucrat &operator=(const Bureaucrat &object);
 
-		// Operator <<
-		friend std::ostream &operator<<(std::ostream &os,
-										const Bureaucrat &bureaucrat);
+	// Operator <<
+	friend std::ostream &operator<<(std::ostream &os, const Bureaucrat &bureaucrat);
 
-		// Members
+	// Members
+	void increaseGrade();
+	void decreaseGrade();
 
-		void increaseGrade();
-		void decreaseGrade();
+	// Class Error exception
+	class GradeTooHighException : public std::runtime_error {
+	  public:
+		explicit GradeTooHighException(const std::string &message = "Grade too High.") : std::runtime_error(message) {
+		}
+	};
 
-		// Class Error exception
-		class GradeTooHighException : public std::runtime_error {
-			public:
-				explicit GradeTooHighException(const std::string &message)
-					: std::runtime_error(message) {
-				}
-		};
+	class GradeTooLowException : public std::runtime_error {
+	  public:
+		explicit GradeTooLowException(const std::string &message = "Grade too Low.") : std::runtime_error(message) {
+		}
+	};
 
-		class GradeTooLowException : public std::runtime_error {
-			public:
-				explicit GradeTooLowException(const std::string &message)
-					: std::runtime_error(message) {
-				}
-		};
-
-		// Getters
-		const std::string &getName() const;
-		const int &getGrade() const;
+	// Getters
+	const std::string &getName() const;
+	const int &getGrade() const;
 };
 
 // class MyError2 {

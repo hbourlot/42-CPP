@@ -1,9 +1,8 @@
 #include "Bureaucrat.hpp"
 #include <ostream>
-#include <stdexcept>
 
 // Constructor
-Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name), _grade(grade) {
+Bureaucrat::Bureaucrat(std::string name, int grade) : _grade(grade), _name(name) {
 
 	if (grade < 0) {
 		throw Bureaucrat::GradeTooLowException("Grade too low.");
@@ -42,13 +41,22 @@ std::ostream &operator<<(std::ostream &os, const Bureaucrat &object) {
 void Bureaucrat::increaseGrade() {
 	this->_grade = _grade - 1;
 	if (this->_grade < 0)
-		throw Bureaucrat::GradeTooHighException();
+		throw Bureaucrat::GradeTooHighException("Grade too Low.");
 }
 
 void Bureaucrat::decreaseGrade() {
 	this->_grade = _grade + 1;
 	if (this->_grade > 150) {
-		throw Bureaucrat::GradeTooLowException();
+		throw Bureaucrat::GradeTooLowException("Grade too high.");
+	}
+}
+
+void Bureaucrat::signForm(Form &object) {
+	try {
+		object.beSigned(*this);
+		std::cout << this->getName() << " signed " << object.getName() << std::endl;
+	} catch (const std::exception &e) {
+		std::cout << this->getName() << " couldn't sign " << object.getName() << " because " << e.what() << std::endl;
 	}
 }
 
