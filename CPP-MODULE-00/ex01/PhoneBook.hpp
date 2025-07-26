@@ -1,5 +1,4 @@
-#ifndef PHONEBOOK_HPP
-# define PHONEBOOK_HPP
+#pragma once
 
 #include "Contact.hpp"
 #include <math.h>
@@ -32,5 +31,3 @@ class PhoneBook {
 		void printContact(int idx);
 
 };
-
-#endif
