@@ -1,88 +1,158 @@
+#include "../inc/AForm.hpp"
+#include "../inc/Bureaucrat.hpp"
+#include "../inc/PresidentialPardonForm.hpp"
+#include "../inc/RobotomyRequestForm.hpp"
+#include "../inc/ShrubberyCreationForm.hpp"
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
 #include <exception>
 
 int main() {
 
-	// Bureaucrat me(51, "Hugo");
-	// try {
+	std::cout << "\n*********CREATING FORMS AND BUREAUCRAT**********\n" << std::endl;
 
-	// 	std::cout << me;
+	AForm *shrubbery = new ShrubberyCreationForm("house");
+	AForm *robot = new RobotomyRequestForm("human");
+	AForm *pardon = new PresidentialPardonForm("human");
+	Bureaucrat *president = new Bureaucrat("President", 1);
+	Bureaucrat *miguel = new Bureaucrat("Miguel", 100);
+	Bureaucrat *powerless = new Bureaucrat("Powerless", 150);
 
-	// 	me.decreaseGrade();
-	// 	// me.decreaseGrade();
-	// 	std::cout << me;
+	std::cout << "\033[31m";
+	std::cout << "\n***************************************";
+	std::cout << "\n*********TESTING SHRUBERRY*************";
+	std::cout << "\n***************************************\n";
+	std::cout << "\033[0m";
 
-	// } catch (std::exception &e) {
-	// 	std::cout << "Caught error: " << e.what() << std::endl;
-	// }
-
-	// try {
-	// 	Form hugo("Hugo", 50, 100);
-	// 	std::cout << hugo << std::endl;
-	// 	me.signForm(hugo);
-	// 	// std::cout << hugo << std::endl;
-
-	// } catch (std::exception &e) {
-	// 	std::cout << "Caught error: " << e.what() << std::endl;
-	// }
-
-	std::cout << "\n*********TESTING CONSTRUCTOR**********\n" << std::endl;
+	std::cout << "\n*********TRY EXECUTE SHRUBERRY WITHOUT SIGNING**********\n" << std::endl;
 	try {
-		Form test("test1", 10, 190);
-	} catch (std::exception &msg) {
-		std::cout << "test1 -> Error: " << msg.what() << std::endl;
-	}
-
-	try {
-		Form test1("test1", 10, 0);
-	} catch (std::exception &msg) {
-		std::cout << "test1 -> Error: " << msg.what() << std::endl;
-	}
-
-	try {
-		Form test2("test2", 190, 10);
-	} catch (std::exception &msg) {
-		std::cout << "test2 -> Error: " << msg.what() << std::endl;
-	}
-
-	try {
-		Form test3("test3", 0, 100);
-	} catch (std::exception &msg) {
-		std::cout << "test3 -> Error: " << msg.what() << std::endl;
-	}
-
-	std::cout << "\n*********TESTING GRADE 10 FORM 100**********\n" << std::endl;
-	try {
-		Bureaucrat hugo("hugo", 10);
-		Form form("test", 100, 120);
-		hugo.signForm(form);
+		// ShrubberyCreationForm form("house");
+		// AForm& shrubbery = form; //Prevent object slicing
+		std::cout << "Form name: " << shrubbery->getName() << " | Target: " << shrubbery->getTarget()
+		          << " | Sign grade: " << shrubbery->getSignGrade()
+		          << " | Execute grade: " << shrubbery->getExecuteGrade() << std::endl;
+		shrubbery->execute(*miguel);
 	} catch (std::exception &msg) {
 		std::cout << "Error: " << msg.what() << std::endl;
 	}
 
-	std::cout << "\n*********TESTING GRADE 10 FORM 1**********\n" << std::endl;
+	std::cout << "\033[32m";
+	std::cout << "\n*********TRY EXECUTE SHRUBERRY**********\n" << std::endl;
+	std::cout << "\033[0m";
 	try {
-		Bureaucrat hugo("hugo", 10);
-		Form form("test", 1, 120);
-		hugo.signForm(form);
+		president->signForm(*shrubbery);
+		shrubbery->execute(*president);
 	} catch (std::exception &msg) {
 		std::cout << "Error: " << msg.what() << std::endl;
 	}
 
-	std::cout << "\n*********TESTING GRADE 10 FORM 10**********\n" << std::endl;
+	std::cout << "\033[32m";
+	std::cout << "\n*********TRY EXECUTE SHRUBERRY WITHOUT ENOUGH GRADE**********\n" << std::endl;
+	std::cout << "\033[0m";
+
 	try {
-		Bureaucrat hugo("hugo", 10);
-		Form form("test", 10, 120);
-		hugo.decreaseGrade();
-		hugo.signForm(form);
-		hugo.increaseGrade();
-		hugo.increaseGrade();
-		hugo.signForm(form);
-		hugo.signForm(form);
+		powerless->signForm(*shrubbery);
+		shrubbery->execute(*powerless);
 	} catch (std::exception &msg) {
 		std::cout << "Error: " << msg.what() << std::endl;
 	}
+
+	std::cout << "\033[31m";
+	std::cout << "\n***************************************";
+	std::cout << "\n*********TESTING ROBOTREQUEST**********";
+	std::cout << "\n***************************************\n";
+	std::cout << "\033[0m";
+
+	std::cout << "\033[32m";
+	std::cout << "\n*********TRY EXECUTE ROBOT WITHOUT SIGNING**********\n" << std::endl;
+	std::cout << "\033[0m";
+
+	try {
+
+		std::cout << "Form name: " << robot->getName() << " | Target: " << robot->getTarget()
+		          << " | Sign grade: " << robot->getSignGrade() << " | Execute grade: " << robot->getExecuteGrade()
+		          << std::endl;
+		robot->execute(*miguel);
+	} catch (std::exception &msg) {
+		std::cout << "Error: " << msg.what() << std::endl;
+	}
+
+	std::cout << "\033[32m";
+	std::cout << "\n*********TRY EXECUTE ROBOT**********\n" << std::endl;
+	std::cout << "\033[0m";
+
+	try {
+		president->signForm(*robot);
+		robot->execute(*president);
+	} catch (std::exception &msg) {
+		std::cout << "Error: " << msg.what() << std::endl;
+	}
+
+	std::cout << "\033[32m";
+	std::cout << "\n*********TRY EXECUTE ROBOT WITHOUT ENOUGH GRADE**********\n" << std::endl;
+	std::cout << "\033[0m";
+
+	try {
+		powerless->signForm(*robot);
+		robot->execute(*powerless);
+	} catch (std::exception &msg) {
+		std::cout << "Error: " << msg.what() << std::endl;
+	}
+
+	std::cout << "\033[31m";
+	std::cout << "\n**********************************************";
+	std::cout << "\n*********TESTING PRESIDENTIAL PARDON**********";
+	std::cout << "\n**********************************************\n";
+	std::cout << "\033[0m";
+
+	std::cout << "\033[32m";
+	std::cout << "\n*********TRY EXECUTE PRESIDENTIAL PARDON WITHOUT SIGNING**********\n" << std::endl;
+	std::cout << "\033[0m";
+
+	try {
+
+		std::cout << "Form name: " << pardon->getName() << " | Target: " << pardon->getTarget()
+		          << " | Sign grade: " << pardon->getSignGrade() << " | Execute grade: " << pardon->getExecuteGrade()
+		          << std::endl;
+		pardon->execute(*miguel);
+	} catch (std::exception &msg) {
+		std::cout << "Error: " << msg.what() << std::endl;
+	}
+
+	std::cout << "\033[32m";
+	std::cout << "\n*********TRY EXECUTE PRESIDENTIAL PARDON**********\n" << std::endl;
+	std::cout << "\033[0m";
+
+	try {
+		president->signForm(*pardon);
+		pardon->execute(*president);
+	} catch (std::exception &msg) {
+		std::cout << "Error: " << msg.what() << std::endl;
+	}
+
+	std::cout << "\033[32m";
+	std::cout << "\n*********TRY EXECUTE PRESIDENTIAL PARDON WITHOUT ENOUGH GRADE**********\n" << std::endl;
+	std::cout << "\033[0m";
+
+	try {
+		powerless->signForm(*pardon);
+		pardon->execute(*powerless);
+	} catch (std::exception &msg) {
+		std::cout << "Error: " << msg.what() << std::endl;
+	}
+
+	std::cout << "\033[31m";
+	std::cout << "\n**********************************************";
+	std::cout << "\n*********TRY YOUR TESTS IF YOU WANT***********";
+	std::cout << "\n**********************************************\n";
+	std::cout << "\033[0m";
+
+	delete shrubbery;
+	delete robot;
+	delete pardon;
+	delete miguel;
+	delete president;
+	delete powerless;
+	return 0;
 
 	return 0;
-}
+};

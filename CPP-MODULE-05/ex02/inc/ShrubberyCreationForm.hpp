@@ -2,6 +2,7 @@
 
 #include "AForm.hpp"
 #include <iostream>
+#include <stdexcept>
 
 struct AForm;
 
@@ -10,22 +11,31 @@ struct AForm;
 // inside it.
 class ShrubberyCreationForm : public AForm {
 
-	private:
-		std::string _target;
+  private:
+	std::string _target;
 
-		// Default Constructor
-		ShrubberyCreationForm();
+	// Default Constructor
+	ShrubberyCreationForm();
 
-	public:
-		// Constructor
-		ShrubberyCreationForm(std::string target);
+  public:
+	class ShrubberyCreationFormException : public std::runtime_error {
+	  public:
+		explicit ShrubberyCreationFormException(const std::string &message = "Shrubbery Exception")
+		    : std::runtime_error(message) {};
+	};
 
-		// Copy Constructor
-		ShrubberyCreationForm(const ShrubberyCreationForm &object);
+	// Constructor
+	ShrubberyCreationForm(std::string target);
 
-		// Operator =
-		ShrubberyCreationForm &operator=(const ShrubberyCreationForm &object);
+	// Copy Constructor
+	ShrubberyCreationForm(const ShrubberyCreationForm &object);
 
-		// Destructor
-		~ShrubberyCreationForm();
+	// Operator =
+	ShrubberyCreationForm &operator=(const ShrubberyCreationForm &object);
+
+	// Destructor
+	~ShrubberyCreationForm();
+
+	// Virtual Member
+	void executeAction() const;
 };

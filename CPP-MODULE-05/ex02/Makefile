@@ -20,7 +20,7 @@ OBJ_DIR         = obj/
 # -- Variables
 COMPILED_FILES  = 0
 LEN             = 0
-CPP_FUNC	    = Bureaucrat Form main
+CPP_FUNC	    = AForm Bureaucrat ShrubberyCreationForm RobotomyRequestForm RobotomyRequestForm main
 SRC_FILES       = $(addprefix $(SRC_DIR), $(CPP_FUNC:=.cpp))
 
 OBJS_SRC        = $(addprefix $(OBJ_DIR), $(SRC_FILES:%.cpp=%.o))

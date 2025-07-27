@@ -1,14 +1,14 @@
-#include "AForm.hpp"
-#include "Bureaucrat.hpp"
+#include "../inc/AForm.hpp"
+#include "../inc/Bureaucrat.hpp"
 #include <ostream>
 
 // Constructor
 AForm::AForm(std::string name, const int gradeToSign, const int gradeToExecute)
-	: _isSigned(false), _name(name), _gradeToSign(gradeToSign), _gradeToExecute(gradeToExecute) {
+    : _isSigned(false), _name(name), _gradeToSign(gradeToSign), _gradeToExecute(gradeToExecute) {
 
 	if (_gradeToSign < 0 || _gradeToExecute < 0) {
 		throw AForm::GradeTooLowException("Grade too low.");
-	} else if (_gradeToSign > 150 || _gradeToExecute > 0) {
+	} else if (_gradeToSign > 150 || _gradeToExecute > 150) {
 		throw AForm::GradeTooHighException("Grade too high.");
 	}
 }
@@ -18,8 +18,8 @@ AForm::AForm() : _name("Default"), _isSigned(), _gradeToSign(), _gradeToExecute(
 
 // Copy Constructor
 AForm::AForm(const AForm &object)
-	: _name(object.getName()), _isSigned(object.getIsSigned()), _gradeToSign(object.getGradeToSign()),
-	  _gradeToExecute(object.getGradeToExecute()) {
+    : _name(object.getName()), _isSigned(object.getIsSigned()), _gradeToSign(object.getGradeToSign()),
+      _gradeToExecute(object.getGradeToExecute()) {
 }
 
 // Operator =
@@ -79,9 +79,12 @@ void AForm::beSigned(const Bureaucrat &object) {
 void AForm::execute(Bureaucrat const &executor) const {
 
 	if (!_isSigned) {
-		AForm::IsSignedException();
-	} else if (executor.getGrade() > _gradeToSign) {
-		AForm::GradeTooLowException();
-	} else {
+		throw AForm::IsSignedException();
+	} else if (executor.getGrade() > _gradeToExecute) {
+		throw AForm::GradeTooLowException();
 	}
+
+	this->executeAction();
 }
+
+void AForm::executeAction() const {};
