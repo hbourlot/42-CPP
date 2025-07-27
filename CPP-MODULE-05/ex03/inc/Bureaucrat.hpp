@@ -43,14 +43,12 @@ class Bureaucrat {
 	// Class Error exception
 	class GradeTooHighException : public std::runtime_error {
 	  public:
-		explicit GradeTooHighException(const std::string &message = "Grade too High.") : std::runtime_error(message) {
-		}
+		explicit GradeTooHighException(const std::string &message = "Grade too High.") : std::runtime_error(message){};
 	};
 
 	class GradeTooLowException : public std::runtime_error {
 	  public:
-		explicit GradeTooLowException(const std::string &message = "Grade too Low.") : std::runtime_error(message) {
-		}
+		explicit GradeTooLowException(const std::string &message = "Grade too Low.") : std::runtime_error(message){};
 	};
 
 	class BureaucratException : public std::runtime_error {

@@ -14,7 +14,7 @@ int main() {
 	AForm *robot = new RobotomyRequestForm("human");
 	AForm *pardon = new PresidentialPardonForm("human");
 	Bureaucrat *president = new Bureaucrat("President", 1);
-	Bureaucrat *miguel = new Bureaucrat("Miguel", 100);
+	Bureaucrat *hugo = new Bureaucrat("Hugo", 100);
 	Bureaucrat *powerless = new Bureaucrat("Powerless", 150);
 
 	std::cout << "\033[31m";
@@ -28,9 +28,9 @@ int main() {
 		// ShrubberyCreationForm form("house");
 		// AForm& shrubbery = form; //Prevent object slicing
 		std::cout << "Form name: " << shrubbery->getName() << " | Target: " << shrubbery->getTarget()
-		          << " | Sign grade: " << shrubbery->getSignGrade()
-		          << " | Execute grade: " << shrubbery->getExecuteGrade() << std::endl;
-		shrubbery->execute(*miguel);
+		          << " | Sign grade: " << shrubbery->getGradeToSign()
+		          << " | Execute grade: " << shrubbery->getGradeToExecute() << std::endl;
+		shrubbery->execute(*hugo);
 	} catch (std::exception &msg) {
 		std::cout << "Error: " << msg.what() << std::endl;
 	}
@@ -71,7 +71,7 @@ int main() {
 		std::cout << "Form name: " << robot->getName() << " | Target: " << robot->getTarget()
 		          << " | Sign grade: " << robot->getSignGrade() << " | Execute grade: " << robot->getExecuteGrade()
 		          << std::endl;
-		robot->execute(*miguel);
+		robot->execute(*hugo);
 	} catch (std::exception &msg) {
 		std::cout << "Error: " << msg.what() << std::endl;
 	}
@@ -113,7 +113,7 @@ int main() {
 		std::cout << "Form name: " << pardon->getName() << " | Target: " << pardon->getTarget()
 		          << " | Sign grade: " << pardon->getSignGrade() << " | Execute grade: " << pardon->getExecuteGrade()
 		          << std::endl;
-		pardon->execute(*miguel);
+		pardon->execute(*hugo);
 	} catch (std::exception &msg) {
 		std::cout << "Error: " << msg.what() << std::endl;
 	}
@@ -140,19 +140,13 @@ int main() {
 		std::cout << "Error: " << msg.what() << std::endl;
 	}
 
-	std::cout << "\033[31m";
-	std::cout << "\n**********************************************";
-	std::cout << "\n*********TRY YOUR TESTS IF YOU WANT***********";
-	std::cout << "\n**********************************************\n";
-	std::cout << "\033[0m";
 
 	delete shrubbery;
 	delete robot;
 	delete pardon;
-	delete miguel;
+	delete hugo;
 	delete president;
 	delete powerless;
 	return 0;
 
-	return 0;
 };

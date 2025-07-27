@@ -13,10 +13,10 @@ Bureaucrat::Bureaucrat(std::string name, int grade) : _grade(grade), _name(name)
 };
 
 // Destructor
-Bureaucrat::~Bureaucrat() {};
+Bureaucrat::~Bureaucrat(){};
 
 // Copy constructor
-Bureaucrat::Bureaucrat(const Bureaucrat &object) : _grade(object.getGrade()), _name(object.getName()) {};
+Bureaucrat::Bureaucrat(const Bureaucrat &object) : _grade(object.getGrade()), _name(object.getName()){};
 
 // Overload =
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &object) {
@@ -51,6 +51,13 @@ void Bureaucrat::decreaseGrade() {
 };
 
 void Bureaucrat::signForm(AForm &object) {
+
+	AForm *totem = &object;
+
+	if (!totem) {
+		throw BureaucratException("Error Null Memory.");
+		return;
+	}
 	try {
 		object.beSigned(*this);
 		std::cout << this->getName() << " signed " << object.getName() << std::endl;

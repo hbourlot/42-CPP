@@ -9,15 +9,13 @@ Bureaucrat::Bureaucrat(std::string name, int grade) : _grade(grade), _name(name)
 	} else if (grade > 150) {
 		throw Bureaucrat::GradeTooHighException("Grade too high.");
 	}
-}
+};
 
 // Destructor
-Bureaucrat::~Bureaucrat() {
-}
+Bureaucrat::~Bureaucrat(){};
 
 // Copy constructor
-Bureaucrat::Bureaucrat(const Bureaucrat &object) : _grade(object.getGrade()), _name(object.getName()) {
-}
+Bureaucrat::Bureaucrat(const Bureaucrat &object) : _grade(object.getGrade()), _name(object.getName()){};
 
 // Overload =
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &object) {
@@ -27,7 +25,7 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat &object) {
 	}
 
 	return *this;
-}
+};
 
 // Overload <<
 std::ostream &operator<<(std::ostream &os, const Bureaucrat &object) {
@@ -35,25 +33,25 @@ std::ostream &operator<<(std::ostream &os, const Bureaucrat &object) {
 	os << object.getName() << ", bureaucrat grade " << object.getGrade() << std::endl;
 
 	return os;
-}
+};
 
 // Members
 void Bureaucrat::increaseGrade() {
 	this->_grade = _grade - 1;
 	if (this->_grade < 0)
 		throw Bureaucrat::GradeTooHighException("Grade too Low.");
-}
+};
 
 void Bureaucrat::decreaseGrade() {
 	this->_grade = _grade + 1;
 	if (this->_grade > 150) {
 		throw Bureaucrat::GradeTooLowException("Grade too high.");
 	}
-}
+};
 
-void Bureaucrat::signForm(Form &object) {
+void Bureaucrat::signForm(AForm &object) {
 
-	Form *totem = &object;
+	AForm *totem = &object;
 
 	if (!totem) {
 		throw BureaucratException("Error Null Memory.");
@@ -66,13 +64,23 @@ void Bureaucrat::signForm(Form &object) {
 	} catch (const std::exception &e) {
 		std::cout << this->getName() << " couldn't sign " << object.getName() << " because " << e.what() << std::endl;
 	}
-}
+};
 
 // Getters
 const std::string &Bureaucrat::getName() const {
 	return this->_name;
-}
+};
 
 const int &Bureaucrat::getGrade() const {
 	return this->_grade;
-}
+};
+
+void Bureaucrat::executeForm(AForm const &form) const {
+
+	try {
+		form.executeAction();
+		std::cout << _name << " executed " << form.getName();
+	} catch (std::exception &e) {
+		std::cout << "ExecuteForm Error: " << e.what() << std::endl;
+	}
+};

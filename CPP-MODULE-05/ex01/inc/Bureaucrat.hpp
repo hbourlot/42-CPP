@@ -53,6 +53,11 @@ class Bureaucrat {
 		}
 	};
 
+	class BureaucratException : public std::runtime_error {
+	  public:
+		explicit BureaucratException(const std::string &message) : std::runtime_error(message){};
+	};
+
 	// Getters
 	const std::string &getName() const;
 	const int &getGrade() const;
