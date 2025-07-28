@@ -24,10 +24,10 @@ CPP_FUNC	    = AForm Bureaucrat ShrubberyCreationForm RobotomyRequestForm Roboto
 SRC_FILES       = $(addprefix $(SRC_DIR), $(CPP_FUNC:=.cpp))
 
 OBJS_SRC        = $(addprefix $(OBJ_DIR), $(SRC_FILES:%.cpp=%.o))
-LIB             = libBureaucrat.a
+LIB             = libForm.a
 CXX             = c++
 CXXFLAGS        = -std=c++98
-NAME            = Bureaucrat
+NAME            = Intern
 TOTAL_FILES     = $(shell echo $$(($(words $(OBJS_SRC)))))
 VALGRIND        = valgrind -s --leak-check=full --show-leak-kinds=all --track-origins=yes --track-fds=yes
 # MSG             = "[ $(COMPILED_FILES)/$(TOTAL_FILES) $$(($(COMPILED_FILES) * 100 / $(TOTAL_FILES)))%% ] $(ORANGE)Compiling [$1]... $(RESET)"
@@ -96,11 +96,11 @@ bonus: all
 # Shortcuts
 r:
 	@make -s
-	@./$(NAME) ./conf_files/good/chat.conf
+	@./$(NAME)
 
 v:
 	@make -s
-	@$(VALGRIND) ./$(NAME) ./conf_files/good/chat.conf
+	@$(VALGRIND) ./$(NAME)
 
 fc: fclean
 

@@ -24,7 +24,7 @@ CPP_FUNC	    = AForm Bureaucrat ShrubberyCreationForm RobotomyRequestForm Roboto
 SRC_FILES       = $(addprefix $(SRC_DIR), $(CPP_FUNC:=.cpp))
 
 OBJS_SRC        = $(addprefix $(OBJ_DIR), $(SRC_FILES:%.cpp=%.o))
-LIB             = libBureaucrat.a
+LIB             = libForm.a
 CXX             = c++
 CXXFLAGS        = -std=c++98
 NAME            = Bureaucrat
@@ -96,11 +96,11 @@ bonus: all
 # Shortcuts
 r:
 	@make -s
-	@./$(NAME) ./conf_files/good/chat.conf
+	@./$(NAME)
 
 v:
 	@make -s
-	@$(VALGRIND) ./$(NAME) ./conf_files/good/chat.conf
+	@$(VALGRIND) ./$(NAME)
 
 fc: fclean
 

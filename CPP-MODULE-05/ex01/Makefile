@@ -96,11 +96,10 @@ bonus: all
 # Shortcuts
 r:
 	@make -s
-	@./$(NAME) ./conf_files/good/chat.conf
-
+	@./$(NAME)
 v:
 	@make -s
-	@$(VALGRIND) ./$(NAME) ./conf_files/good/chat.conf
+	@$(VALGRIND) ./$(NAME)
 
 fc: fclean
 
