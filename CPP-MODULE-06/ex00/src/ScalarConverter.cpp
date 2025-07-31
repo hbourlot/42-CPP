@@ -1,39 +1,11 @@
 #include "../inc/ScalarConverter.hpp"
+#include <algorithm>
 #include <cctype>
 #include <ios>
 #include <sstream>
+#include <string>
 
 enum ScalarType { TYPE_CHAR, TYPE_INT, TYPE_FLOAT, TYPE_DOUBLE, TYPE_UNKOWN };
-
-ScalarType matchesType(const std::string &input, std::string type) {
-
-	if (input.length() == 1 && std::isprint(input[0]) && !std::isdigit(input[0]))
-		return TYPE_CHAR;
-
-	std::istringstream issInt(input);
-	int i;
-
-	// Int handler
-	if (issInt >> std::noskipws >> i && issInt.eof())
-		return TYPE_INT;
-
-	// Float Handler
-	if (input.back() == 'f') {
-		std::istringstream issFloat(input.substr(0, input.length() - 1));
-		float f;
-
-		if (issFloat >> std::skipws >> f && issFloat.eof())
-			return TYPE_FLOAT;
-	}
-
-	// Double handler
-	std::istringstream issDouble(input);
-	double d;
-	if (issDouble >> std::noskipws >> d && issDouble.eof())
-		return TYPE_DOUBLE;
-
-	return TYPE_UNKOWN;
-};
 
 void display(std::map<std::string, std::string> &output) {
 
@@ -42,22 +14,81 @@ void display(std::map<std::string, std::string> &output) {
 	}
 }
 
+void handleFloat(std::string &input, std::map<std::string, std::string> &output) {
+
+	if (input[input.length() - 1] == 'f') {
+
+		// std::cout << "DASDASDAS\n";
+		std::istringstream issFloat(input.substr(0, input.length() - 1));
+		float f;
+
+		if (issFloat >> std::skipws >> f && issFloat.eof()) {
+			output["float"] = input;
+			return;
+		}
+	}
+
+	output["float"] = "impossible";
+};
+
+void handleChar(std::string &input, std::map<std::string, std::string> &output) {
+
+	if (input.length() == 1 && std::isprint(input[0]) && !std::isdigit(input[0])) {
+
+		output["char"] = input;
+		return;
+	}
+	output["char"] = "Non displayable";
+};
+
+void handleInt(std::string &input, std::map<std::string, std::string> &output) {
+
+	std::istringstream issInt(input);
+	int i;
+
+	// Int handler
+	if (issInt >> std::noskipws >> i && issInt.eof()) {
+		output["int"] = input;
+		return;
+	}
+
+	output["int"] = "impossible";
+};
+
+void handleDouble(std::string &input, std::map<std::string, std::string> &output) {
+
+	std::istringstream issDouble(input);
+	double d;
+
+	if (issDouble >> std::noskipws >> d && issDouble.eof()) {
+
+		output["double"] = input;
+		return;
+	}
+
+	output["double"] = "impossible";
+};
+
 void ScalarConverter::convert(std::string input) {
 
 	const std::string optionsFirst[4] = {"char", "int", "float", "double"};
+	std::string outputSetter[3];
 	std::map<std::string, std::string> output;
 
-	for (size_t i = 0; i < 4; ++i) {
+	for (int i = 0; i < 4; ++i) {
 
 		switch (i) {
 			case TYPE_CHAR:
-				output[optionsFirst[i]] = matchesType(input, optionsFirst[i]) ? input : "Non displayable";
+				handleChar(input, output);
+				break;
 			case TYPE_INT:
-				output[optionsFirst[i]] = matchesType(input, optionsFirst[i]) ? input : "Non displayable";
+				handleInt(input, output);
+				break;
 			case TYPE_FLOAT:
-				output[optionsFirst[i]] = matchesType(input, optionsFirst[i]) ? input : "Non displayable";
+				handleFloat(input, output);
+				break;
 			case TYPE_DOUBLE:
-				output[optionsFirst[i]] = matchesType(input, optionsFirst[i]) ? input : "Non displayable";
+				handleDouble(input, output);
 		}
 	}
 	display(output);
