@@ -3,6 +3,10 @@
 #include <iostream>
 #include <math.h>
 
+struct A;
+struct B;
+struct C;
+
 class Base {
 	enum ClassType { TYPE_A, TYPE_B, TYPE_C };
 

@@ -13,7 +13,6 @@ Data::Data(uintptr_t raw) {
 	_addr = raw;
 }
 
-
 // Operator =
 Data &Data::operator=(const Data &object) {
 	if (&object != this) {
@@ -29,4 +28,9 @@ Data::~Data(){};
 // Getters
 uintptr_t &Data::getAddr() {
 	return this->_addr;
+}
+
+// Setters
+void Data::setAddr(uintptr_t value) {
+	this->_addr = value;
 }

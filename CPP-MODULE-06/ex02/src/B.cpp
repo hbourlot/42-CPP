@@ -1,5 +1,5 @@
 #include "../inc/B.hpp"
 
-B::B() : Base() {};
+B::B() : Base(){};
 
-B::~B() {};
+B::~B(){};

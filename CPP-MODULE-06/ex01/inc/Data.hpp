@@ -1,7 +1,7 @@
 #pragma once
 
-#include <stdint.h>
 #include <iostream>
+#include <stdint.h>
 
 class Data {
 
@@ -21,4 +21,6 @@ class Data {
 	~Data();
 	// Getters
 	uintptr_t &getAddr();
+	// Setters
+	void setAddr(uintptr_t);
 };
