@@ -2,29 +2,25 @@
 #include <sys/types.h>
 
 // Constructor
-RobotomyRequestForm::RobotomyRequestForm(std::string target) : AForm("RobotomyRequest", 72, 45), _target(target) {};
+RobotomyRequestForm::RobotomyRequestForm(std::string target) : AForm("RobotomyRequest", 72, 45), _target(target){};
 
 // Default Constructor
-RobotomyRequestForm::RobotomyRequestForm() : AForm(), _target("NULL") {};
+RobotomyRequestForm::RobotomyRequestForm() : AForm(), _target("NULL"){};
 
 // Copy Constructor
-RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &object) {
-	_target = object._target;
-	// AForm
-};
-
+RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &object) : AForm(object), _target(object._target) {
+}
 // Operator =
 RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm &object) {
-
 	if (this != &object) {
+		AForm::operator=(object);
 		_target = object._target;
-		// AForm
 	}
 	return *this;
 }
 
 // Destructor
-RobotomyRequestForm::~RobotomyRequestForm() {};
+RobotomyRequestForm::~RobotomyRequestForm(){};
 
 // Virtual Member
 void RobotomyRequestForm::executeAction() const {

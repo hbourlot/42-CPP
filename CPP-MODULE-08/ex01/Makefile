@@ -18,14 +18,14 @@ OBJ_DIR 		= obj/
 
 # -- Variables
 COMPILED_FILES 	= 0
-CPP_FUNC 		= main
+CPP_FUNC 		= Span main
 SRC_FILES 		= $(addprefix $(SRC_DIR), $(CPP_FUNC:=.cpp))
 TOTAL_FILES 	= $(words $(SRC_FILES))
 OBJS_SRC        = $(addprefix $(OBJ_DIR), $(SRC_FILES:%.cpp=%.o))
-LIB 			= libArray
+LIB 			= libSpan
 CXX 			= c++
 CXXFLAGS 		= -std=c++98 -Wall -Wextra -Werror
-NAME 			= array
+NAME 			= span
 VALGRIND 		= valgrind -s --leak-check=full --show-leak-kinds=all --track-origins=yes --track-fds=yes
 
 

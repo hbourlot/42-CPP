@@ -22,10 +22,10 @@ CPP_FUNC 		= main
 SRC_FILES 		= $(addprefix $(SRC_DIR), $(CPP_FUNC:=.cpp))
 TOTAL_FILES 	= $(words $(SRC_FILES))
 OBJS_SRC        = $(addprefix $(OBJ_DIR), $(SRC_FILES:%.cpp=%.o))
-LIB 			= libArray
+LIB 			= libEasyfind
 CXX 			= c++
 CXXFLAGS 		= -std=c++98 -Wall -Wextra -Werror
-NAME 			= array
+NAME 			= easyfind
 VALGRIND 		= valgrind -s --leak-check=full --show-leak-kinds=all --track-origins=yes --track-fds=yes
 
 

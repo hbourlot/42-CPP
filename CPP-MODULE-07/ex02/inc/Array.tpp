@@ -1,6 +1,5 @@
 #pragma once
 
-
 // Default constructor
 #include <stdexcept>
 template <typename T> Array<T>::Array() : _arr(nullptr), _size(0) {
@@ -28,7 +27,7 @@ template <typename T> Array<T> &Array<T>::operator=(const Array &other) {
 		_size = other._size;
 	}
 	return *this;
-}
+};
 
 // Element access
 template <typename T> T &Array<T>::operator[](unsigned int index) {
@@ -54,7 +53,7 @@ template <typename T> unsigned int Array<T>::size() const {
 template <typename T> void Array<T>::fillArray(const T *toSet, unsigned int length) {
 
 	// if (!toSet)
-		// throw std::invalid_argument("Null pointer passed to fillArray");
+	// throw std::invalid_argument("Null pointer passed to fillArray");
 
 	if (length > _size)
 		throw std::out_of_range("Index out of range");

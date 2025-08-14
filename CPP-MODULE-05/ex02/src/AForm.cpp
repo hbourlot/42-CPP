@@ -4,7 +4,7 @@
 
 // Constructor
 AForm::AForm(std::string name, const int gradeToSign, const int gradeToExecute)
-    : _isSigned(false), _name(name), _gradeToSign(gradeToSign), _gradeToExecute(gradeToExecute) {
+    : _name(name), _isSigned(false),  _gradeToSign(gradeToSign), _gradeToExecute(gradeToExecute) {
 
 	if (_gradeToSign < 0 || _gradeToExecute < 0) {
 		throw AForm::GradeTooLowException("Grade too low.");
@@ -96,11 +96,11 @@ const std::string AForm::getTarget() const {
 }
 
 // Ghost function to be implemented in derived classes
-const int AForm::getSignGrade() const {
+int AForm::getSignGrade() const {
 	return this->_gradeToSign;
 }
 
 // Ghost function to be implemented in derived classes
-const int AForm::getExecuteGrade() const {
+int AForm::getExecuteGrade() const {
 	return this->_gradeToExecute;
 }

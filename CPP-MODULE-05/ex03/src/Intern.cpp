@@ -7,11 +7,14 @@
 Intern::Intern(){};
 
 // Copy Constructor
-Intern::Intern(const Intern &object){};
+Intern::Intern(const Intern &object) {
+	(void)object;
+}
 
 // Operator =
 Intern &Intern::operator=(const Intern &object) {
-	return *this;
+    (void)object;
+    return *this;
 }
 
 // Destructor

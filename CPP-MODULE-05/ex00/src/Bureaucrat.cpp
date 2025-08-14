@@ -17,7 +17,7 @@ Bureaucrat::~Bureaucrat() {
 }
 
 // Copy constructor
-Bureaucrat::Bureaucrat(const Bureaucrat &object) : _grade(object.getGrade()), _name(object.getName()) {
+Bureaucrat::Bureaucrat(const Bureaucrat &object) :  _name(object.getName()), _grade(object.getGrade()) {
 }
 
 // Overload =

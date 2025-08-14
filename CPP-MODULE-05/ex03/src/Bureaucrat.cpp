@@ -2,21 +2,20 @@
 #include <ostream>
 
 // Constructor
-Bureaucrat::Bureaucrat(std::string name, int grade) : _grade(grade), _name(name) {
-
+Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name), _grade(grade) {
 	if (grade < 0) {
 		throw Bureaucrat::GradeTooLowException("Grade too low.");
 	} else if (grade > 150) {
 		throw Bureaucrat::GradeTooHighException("Grade too high.");
 	}
-};
+}
 
 // Destructor
 Bureaucrat::~Bureaucrat(){};
 
 // Copy constructor
-Bureaucrat::Bureaucrat(const Bureaucrat &object) : _grade(object.getGrade()), _name(object.getName()){};
-
+Bureaucrat::Bureaucrat(const Bureaucrat &object) : _name(object.getName()), _grade(object.getGrade()) {
+}
 // Overload =
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &object) {
 

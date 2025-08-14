@@ -2,15 +2,14 @@
 
 // Constructor
 PresidentialPardonForm::PresidentialPardonForm(std::string target)
-    : AForm("PresidentialPardon", 25, 5), _target(target) {};
+    : AForm("PresidentialPardon", 25, 5), _target(target){};
 
 // Ddefault Constructor
-PresidentialPardonForm::PresidentialPardonForm() : AForm(), _target() {};
+PresidentialPardonForm::PresidentialPardonForm() : AForm(), _target(){};
 
 // Copy Constructor
-PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &object) {
-	_target = object._target;
-	// AForm
+PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &object)
+    : AForm(object), _target(object._target) {
 }
 
 // Operator =
@@ -25,7 +24,7 @@ PresidentialPardonForm &PresidentialPardonForm::operator=(const PresidentialPard
 }
 
 // Destructor
-PresidentialPardonForm::~PresidentialPardonForm() {};
+PresidentialPardonForm::~PresidentialPardonForm(){};
 
 // Virtual Member
 void PresidentialPardonForm::executeAction() const {

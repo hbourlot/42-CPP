@@ -24,7 +24,7 @@ TOTAL_FILES 	= $(words $(SRC_FILES))
 OBJS_SRC        = $(addprefix $(OBJ_DIR), $(SRC_FILES:%.cpp=%.o))
 LIB 			= libScalarConverter
 CXX 			= c++
-CXXFLAGS 		= -std=c++98
+CXXFLAGS 		= -std=c++98 -Wall -Wextra -Werror
 NAME 			= convert
 VALGRIND 		= valgrind -s --leak-check=full --show-leak-kinds=all --track-origins=yes --track-fds=yes
 
@@ -51,7 +51,7 @@ $(OBJ_DIR)%.o: %.cpp $(HEADERS)
 clean:
 	$(call clean_func)
 
-fclean:
+fclean: clean
 	$(call fclean_func)
 
 re: fclean all

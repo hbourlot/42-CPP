@@ -68,6 +68,6 @@ class AForm {
 	// Virtual member function to be implemented in derived classes
 	virtual void executeAction() const;
 	virtual const std::string getTarget() const;
-	virtual const int getSignGrade() const;
-	virtual const int getExecuteGrade() const;
+	virtual int getSignGrade() const;
+	virtual int getExecuteGrade() const;
 };

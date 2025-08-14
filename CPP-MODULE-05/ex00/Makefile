@@ -26,7 +26,7 @@ SRC_FILES       = $(addprefix $(SRC_DIR), $(CPP_FUNC:=.cpp))
 OBJS_SRC        = $(addprefix $(OBJ_DIR), $(SRC_FILES:%.cpp=%.o))
 LIB             = libBureaucrat.a
 CXX             = c++
-CXXFLAGS        = -std=c++98
+CXXFLAGS        = -std=c++98 -Wall -Wextra -Werror
 NAME            = Bureaucrat
 TOTAL_FILES     = $(shell echo $$(($(words $(OBJS_SRC)))))
 VALGRIND        = valgrind -s --leak-check=full --show-leak-kinds=all --track-origins=yes --track-fds=yes
