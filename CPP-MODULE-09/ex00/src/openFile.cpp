@@ -1,6 +1,6 @@
 #include "../inc/BitcoinExchange.hpp"
 
-bool openDatabaseFile(std::ifstream &file, const std::string &path) {
+bool openFile(std::ifstream &file, const std::string &path) {
 
 	file.open(path.c_str());
 

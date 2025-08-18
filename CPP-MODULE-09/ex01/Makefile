@@ -18,14 +18,14 @@ OBJ_DIR 		= obj/
 
 # -- Variables
 COMPILED_FILES 	= 0
-CPP_FUNC 		= BitcoinExchange checkDateFormat displayOutput getClosestRate getDate getValue loadBtcDatabase main openFile parseDateFormat processTransactions run utils
+CPP_FUNC 		= computeRPN convertSignal main parseInput parseInvalidChars RPN run tokenizeInput
 SRC_FILES 		= $(addprefix $(SRC_DIR), $(CPP_FUNC:=.cpp))
 TOTAL_FILES 	= $(words $(SRC_FILES))
 OBJS_SRC        = $(addprefix $(OBJ_DIR), $(SRC_FILES:%.cpp=%.o))
-LIB 			= libBitcoinExchange
+LIB 			= libRPN
 CXX 			= c++
-CXXFLAGS 		= -std=c++98 -Wall -Wextra -Werror
-NAME 			= btc
+CXXFLAGS 		= -std=c++98 #-Wall -Wextra -Werror
+NAME 			= RPN
 VALGRIND 		= valgrind -s --leak-check=full --show-leak-kinds=all --track-origins=yes --track-fds=yes
 
 
@@ -62,7 +62,7 @@ re: fclean all
 
 r:
 	@make -s
-	@./$(NAME) data/input.txt
+	@$(MAKE) -s mytarget
 
 v:
 	@make -s
@@ -94,3 +94,16 @@ define fclean_func
 	$(PRINT_CMD) "$(GREEN) Removed successfully!$(RESET)\n"; \
 	fi
 endef
+
+targets =	8\ 9\ *\ 9\ -\ 9\ -\ 9\ -\ 4\ -\ 1\ + \
+			7\ 7\ *\ 7\ - \
+			1\ 2\ *\ 2\ /\ 2\ *\ 2\ 4\ -\ + \
+			1\ +\ 1 \
+			1\ 1\ +\ }
+
+mytarget:
+	@for t in $(targets); do \
+		echo "Running ./$(NAME) '$$t'"; \
+		./$(NAME) "$$t"; \
+		sleep 1; \
+	done

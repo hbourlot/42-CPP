@@ -7,30 +7,24 @@
 #include <sys/types.h>
 #include <vector>
 
-static bool openDatabaseFile(std::ifstream &file, const std::string &path) {
+bool BitcoinExchange::loadBtcDatabase(std::ifstream &file) {
 
-	file.open(path.c_str());
-
-	if (!file.is_open())
-		return false;
-	return true;
-};
-
-void BitcoinExchange::loadBtcDatabase(const std::string &path) {
-
-	std::ifstream file;
-	std::string line, date, rateStr;
-	size_t commaPos;
+	std::string line, date;
 	float rate;
 
-	if (!openDatabaseFile(file, path))
-		throw BtcError::OpenFile();
 	// Skipping header
 	std::getline(file, line);
 
-	try {
-		loadDatabase(_bctData, ',', file);
-	} catch (std::exception &e) {
-		std::cout << e.what();
-	}
+	while (std::getline(file, line)) {
+
+		date = getDate(line, ',');
+		rate = getValue(line, ',');
+
+		if (!checkDateFormat(date) || rate == VALUE_ERROR) {
+			return ERROR;
+		} else
+			_bctData[date] = rate;
+	};
+
+	return SUCCESS;
 };
