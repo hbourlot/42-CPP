@@ -1,5 +1,0 @@
-	•	When reading the input file, don’t store the parsed values into _inputData; instead:
-	1.	Parse each line
-	2.	Immediately look up the date in _bctData
-	3.	Calculate and print the result
-	4.	Move to the next line
