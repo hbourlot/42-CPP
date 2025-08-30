@@ -162,22 +162,45 @@
 // ---------------- Demo ----------------
 int main() {
 
-	std::list< int > l = {50, 20, 80, 10, 60, 40, 70, 30, 90, 5, 25};
-	std::deque< int > d = {50, 20, 80, 10, 60, 40, 70, 30, 90, 5, 25};
-	listIntType_t input(l.begin(), l.end());
+	std::list< int > l;
+	l.push_back(50);
+	l.push_back(20);
+	l.push_back(80);
+	l.push_back(10);
+	l.push_back(60);
+	l.push_back(40);
+	l.push_back(70);
+	l.push_back(30);
+	l.push_back(90);
+	l.push_back(5);
+	l.push_back(25);
 
-	// ListWrapper< std::deque, int > inputDeque(d.begin(), d.end());
-	// listIntType_t sorted = mergeInsertionAlgorithm< listIntType_t, listPairType_t >(input);
-	std::deque< int > sorted = mergeInsertionAlgorithm< std::deque< int >, std::deque< Pair > >(d);
+	std::deque< int > d;
+	d.push_back(50);
+	d.push_back(20);
+	d.push_back(80);
+	d.push_back(10);
+	d.push_back(60);
+	d.push_back(40);
+	d.push_back(70);
+	d.push_back(30);
+	d.push_back(90);
+	d.push_back(5);
+	d.push_back(25);
 
-	// ListWrapper< std::deque, int > sortedDeque =
-	// mergeInsertionAlgorithm< ListWrapper< std::deque, int >, std::deque< Pair > >(inputDeque);
+	std::list< int > sortedL = mergeInsertionAlgorithm< std::list< int >, std::list< Pair > >(l);
+	std::deque< int > sortedD = mergeInsertionAlgorithm< std::deque< int >, std::deque< Pair > >(d);
 
-	std::cout << "Sorted: ";
-	for (int x : sorted)
-		std::cout << x << " ";
+	// Instead of: for (int x : sortedL)
+	for (std::list< int >::iterator it = sortedL.begin(); it != sortedL.end(); ++it) {
+		std::cout << *it << " ";
+	}
 	std::cout << "\n";
 
+	// Similarly for sortedD
+	for (std::deque< int >::iterator it = sortedD.begin(); it != sortedD.end(); ++it) {
+		std::cout << *it << " ";
+	}
 	std::cout << "\n";
 
 	return 0;

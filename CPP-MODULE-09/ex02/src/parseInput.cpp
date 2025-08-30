@@ -10,7 +10,7 @@ void parseInput(char **av) {
 
 		while (av[i][j]) {
 			if (av[i][j] != ' ' && !std::isdigit(av[i][j])) {
-				throw std::invalid_argument("Error: invalid input.");
+				throw std::invalid_argument("Error");
 			};
 			j++;
 		}

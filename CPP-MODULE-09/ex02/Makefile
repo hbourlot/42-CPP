@@ -17,10 +17,11 @@ SRC_DIR 		= src/
 DIJKSTRA_DIR	= $(SRC)dijkstra/
 OBJ_DIR 		= obj/
 
+
 # -- Variables
 COMPILED_FILES 	= 0
 CPP_DIJKSTRA = addBlock createDijkstraBlock dijkstra displayBlocks displayRules performDijkstra printShortestPath
-CPP_FUNC 		= convertInputIntoContainer main mergeInsertionAlgorithm parseInput readTerminal
+CPP_FUNC 		= main mergeInsertionAlgorithm parseInput pMergeMe readTerminal
 
 SRC_FILES 		= $(addprefix $(SRC_DIR), $(CPP_FUNC:=.cpp)) \
 					$(addprefix $(SRC_DIR)$(DIJKSTRA_DIR), $(CPP_DIJKSTRA:=.cpp))
@@ -78,6 +79,9 @@ fc:	fclean
 
 c : clean
 
+bonus:
+	@$(MAKE) CXXFLAGS="$(CXXFLAGS) -D BONUS=true" $(NAME)
+
 
 # -- Cleaning functions
 define clean_func
@@ -101,15 +105,10 @@ define fclean_func
 	fi
 endef
 
-targets =	8\ 9\ *\ 9\ -\ 9\ -\ 9\ -\ 4\ -\ 1\ + \
-			7\ 7\ *\ 7\ - \
-			1\ 2\ *\ 2\ /\ 2\ *\ 2\ 4\ -\ + \
-			1\ +\ 1 \
-			1\ 1\ +\ }
-
-mytarget:
-	@for t in $(targets); do \
-		echo "Running ./$(NAME) '$$t'"; \
-		./$(NAME) "$$t"; \
-		sleep 1; \
-	done
+run_tests: $(NAME)
+	@echo "\nRunning test 1: ./$(NAME) with 3000 random numbers"
+	@./$(NAME) `shuf -i 1-100000 -n 3000 | tr "\n" " "`
+	@echo "\nRunning test 2: ./$(NAME) with custom numbers"
+	@./$(NAME) 1 2 10 3 12 42 50 1 2 3 100 31 40 13123 21 35 28
+	@echo "\nRunning test 3: ./$(NAME) \"-1\" \"2\""
+	@./$(NAME) "-1" "2"
