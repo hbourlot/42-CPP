@@ -1,6 +1,6 @@
 #include "PmergeMe.hpp"
 
-void PmergeMe::parseInput(char **av) {
+void parseInput(char **av) {
 
 	int i = 1;
 

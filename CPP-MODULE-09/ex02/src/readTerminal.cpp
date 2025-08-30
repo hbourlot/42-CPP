@@ -1,6 +1,6 @@
 #include "PmergeMe.hpp"
 
-void PmergeMe::readTerminal() {
+void readTerminal() {
 
 	std::string command;
 
@@ -12,7 +12,7 @@ void PmergeMe::readTerminal() {
 			break;
 
 		if (command == "1") {
-			runDijkstraAlgorithm();
+			dijkstra();
 		} else if (command == "quit" || command == "exit") {
 			std::cout << "Exiting terminal input loop." << std::endl;
 			break;

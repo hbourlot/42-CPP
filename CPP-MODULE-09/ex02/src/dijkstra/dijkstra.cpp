@@ -21,7 +21,7 @@ static void clearStack(std::list<DijkstraBlock> &container) {
 		container.pop_back();
 };
 
-void runDijkstraAlgorithm() {
+void dijkstra() {
 
 	std::cout << "Running Dijkstra Algorithm" << std::endl;
 

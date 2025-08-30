@@ -19,8 +19,8 @@ OBJ_DIR 		= obj/
 
 # -- Variables
 COMPILED_FILES 	= 0
-CPP_DIJKSTRA = addBlock createDijkstraBlock displayBlocks displayRules performDijkstra printShortestPath runDijkstraAlgorithm
-CPP_FUNC 		= main parseInput PmergeMe readTerminal run
+CPP_DIJKSTRA = addBlock createDijkstraBlock dijkstra displayBlocks displayRules performDijkstra printShortestPath
+CPP_FUNC 		= convertInputIntoContainer main mergeInsertionAlgorithm parseInput readTerminal
 
 SRC_FILES 		= $(addprefix $(SRC_DIR), $(CPP_FUNC:=.cpp)) \
 					$(addprefix $(SRC_DIR)$(DIJKSTRA_DIR), $(CPP_DIJKSTRA:=.cpp))
