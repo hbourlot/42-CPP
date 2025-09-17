@@ -1,5 +1,4 @@
-#include "../inc/ScalarConverter.hpp"
-
+#include "ScalarConverter.hpp"
 
 enum ScalarType { TYPE_PSEUDO, TYPE_CHAR, TYPE_INT, TYPE_FLOAT, TYPE_DOUBLE, TYPE_UNKOWN };
 

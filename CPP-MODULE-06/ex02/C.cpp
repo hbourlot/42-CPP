@@ -1,4 +1,4 @@
-#include "../inc/C.hpp"
+#include "C.hpp"
 
 C::C() : Base() {};
 

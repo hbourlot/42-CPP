@@ -1,4 +1,4 @@
-#include "../inc/Base.hpp"
+#include "Base.hpp"
 #include <iostream>
 
 // Test generation and pointer identification

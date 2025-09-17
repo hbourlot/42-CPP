@@ -1,4 +1,4 @@
-#include "../inc/Data.hpp"
+#include "Data.hpp"
 
 // Default Constructor
 Data::Data() : _addr(){};

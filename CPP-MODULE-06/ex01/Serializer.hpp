@@ -5,11 +5,18 @@
 #include <stdint.h>
 
 class Serializer {
+
+private:
+	// Default Constructor
+	Serializer();
+	Serializer &operator=(const Serializer *);
+
   public:
 	static uintptr_t serialize(Data *ptr);
 	static Data *deserialize(uintptr_t raw);
 
-	// Default Constructor
-	Serializer();
+
+	//Copy Constructor
+	Serializer(const Serializer *);
 
 };

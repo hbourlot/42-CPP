@@ -11,9 +11,9 @@ CUT				= "\033[K"
 PRINT_CMD       = printf
 
 # -- Files and directories
-INCLUDE 		= inc/
+INCLUDE 		= ./
 HEADERS 		= $(shell find $(INCLUDE) -name "*.hpp")
-SRC_DIR 		= src/
+SRC_DIR 		= ./
 OBJ_DIR 		= obj/
 
 # -- Variables

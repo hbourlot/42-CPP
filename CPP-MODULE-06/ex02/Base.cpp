@@ -1,7 +1,7 @@
-#include "../inc/Base.hpp"
-#include "../inc/A.hpp"
-#include "../inc/B.hpp"
-#include "../inc/C.hpp"
+#include "Base.hpp"
+#include "A.hpp"
+#include "B.hpp"
+#include "C.hpp"
 
 Base::Base(){};
 

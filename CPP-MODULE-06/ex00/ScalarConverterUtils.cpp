@@ -1,4 +1,4 @@
-#include "../inc/ScalarConverter.hpp"
+#include "ScalarConverter.hpp"
 #include <cctype>
 #include <cmath>
 
@@ -33,6 +33,7 @@ void display(std::map<std::string, std::string> &output) {
 
 void handleFloat(std::string &input, std::map<std::string, std::string> &output) {
 
+	// std::cout << "output : " << input << std::endl;
 	if (isInt(input) && input.find('.') == std::string::npos) {
 		output["float"] = input + ".0f";
 	} else if (isFloat(input) && input.find('.') != std::string::npos && input[input.length()] != '.') {
@@ -112,8 +113,6 @@ bool handlePseudoLiterals(std::string &input, std::map<std::string, std::string>
 
 	std::string tmp = input.substr(idx);
 
-	std::cout << "TMP => " + tmp << std::endl;
-
 	for (slot = 0; slot < 4; ++slot) {
 
 		if (tmp.compare(pseudo[slot]) == 0) {
@@ -167,7 +166,7 @@ bool clearStringCase(std::string &input) {
 
 	if (input[input.length() - 1] == 'f' && input.length() > 1) // Possible 'f' at end of value .e.c: 42f
 		return true;
-	if (input.length() == 1)
-		return false;
-	return true;
+	// if (input.length() == 1)
+	// 	return false;
+	return false;
 }

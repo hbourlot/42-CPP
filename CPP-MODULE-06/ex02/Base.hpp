@@ -3,9 +3,6 @@
 #include <iostream>
 #include <math.h>
 
-struct A;
-struct B;
-struct C;
 
 /// @class Base
 /// @brief Polymorphic base class for dynamic type identification.
