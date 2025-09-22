@@ -19,6 +19,15 @@ template <typename X, typename Func> void iter(X *array, int length, Func func) 
 	}
 }
 
+template <typename X, typename Func> void iter(const X *array, int length, Func func) {
+	if (!array)
+		return;
+
+	for (int i = 0; i < length; ++i) {
+		func(array[i]);
+	}
+}
+
 /// @brief Converts a character to uppercase (template version).
 /// @tparam T Type supporting assignment and std::toupper
 /// @param c Reference to character to modify

@@ -8,6 +8,7 @@
 #include <fstream>
 #include <iostream>
 #include <map>
+#include <math.h>
 #include <string>
 
 #define DATA_PATH "./data/data.csv"

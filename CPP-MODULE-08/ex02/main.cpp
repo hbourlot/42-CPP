@@ -1,5 +1,5 @@
 
-#include "../inc/MutantStack.hpp"
+#include "MutantStack.hpp"
 
 // Basic push & top test
 void testBasicPushTop() {

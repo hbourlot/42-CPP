@@ -1,4 +1,4 @@
-#include "../inc/Span.hpp"
+#include "Span.hpp"
 #include <algorithm>
 #include <exception>
 #include <iterator>
