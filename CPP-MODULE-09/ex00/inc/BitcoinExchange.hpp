@@ -35,7 +35,7 @@ class BitcoinExchange {
 
   private:
 	std::string _inputFilePath;
-	std::map<std::string, float> _bctData;
+	std::map< std::string, float > _bctData;
 
 	/// @brief Loads Bitcoin exchange rate data from a CSV file into the internal map.
 	/// Reads each line of the provided file stream, extracts the date and rate,
@@ -101,7 +101,7 @@ bool checkDateFormat(const std::string &date);
 /// @param date The input date string in format YYYY-MM-DD.
 /// @param btcContainer Reference to the map containing BTC rates indexed by date.
 /// @return The BTC value corresponding to the closest matching date, or -1.0f if no valid match is found.
-float getClosestRate(const std::string &date, std::map<std::string, float> &btcContainer);
+float getClosestRate(const std::string &date, std::map< std::string, float > &btcContainer);
 
 /// @brief Prints a formatted output line showing the date, input value, and computed exchange value.
 /// The function takes an input line containing a date and value separated by '|',
@@ -110,3 +110,12 @@ float getClosestRate(const std::string &date, std::map<std::string, float> &btcC
 /// @param date       The validated date string to display before the value.
 /// @param exchangeValue  The computed exchange result corresponding to the given input.
 void displayOutput(std::string inputLine, std::string &date, float exchangeValue);
+
+/// @brief Converts a numeric string into a long integer.
+/// Iterates through the input string character by character,
+/// parsing digits into their numeric representation. Handles
+/// optional leading minus sign for negative values.
+/// Stops parsing at the first non-digit character.
+/// @param src The input string containing a number.
+/// @return The converted long integer value. Returns 0 if the string is empty.
+long ft_stol(const std::string &src);

@@ -27,7 +27,9 @@ class RPN {
 
 	std::string _input;
 	float _output;
-	std::vector<std::string> _tokenizedInput;
+	std::vector< std::string > _tokenizedInput;
 };
 
 RPN_SIGNALS convertSignal(const char sig);
+
+float ft_stof(const std::string &src);

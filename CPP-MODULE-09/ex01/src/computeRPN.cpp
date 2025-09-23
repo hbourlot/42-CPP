@@ -16,7 +16,7 @@ static float math(float val1, float val2, RPN_SIGNALS sig) {
 
 void RPN::computeRPN() {
 
-	std::vector<float> valueStack;
+	std::vector< float > valueStack;
 	std::string operators = "+-*/";
 	float val1, val2;
 	RPN_SIGNALS sig;
@@ -26,7 +26,8 @@ void RPN::computeRPN() {
 		const std::string &tok = _tokenizedInput[i];
 
 		if (tok.size() > 1 || std::isdigit(tok[0])) {
-			valueStack.push_back(std::stof(tok));
+
+			valueStack.push_back(ft_stof(tok));
 		} else {
 			val2 = valueStack.back();
 			valueStack.pop_back();

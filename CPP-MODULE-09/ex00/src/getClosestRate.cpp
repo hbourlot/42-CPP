@@ -14,7 +14,10 @@ static size_t getSumTotalTime(std::string time) {
 	month = time.substr(firstDash + 1, lastDash - firstDash - 1);
 	day = time.substr(lastDash + 1);
 
-	totalTime = std::stol(year += month += day);
+	std::string concatenatedString = year + month + day;
+
+
+	totalTime = ft_stol(concatenatedString);
 	if (totalTime == std::string::npos)
 		return 1.0f;
 	return totalTime;
