@@ -7,7 +7,7 @@ void RPN::run() {
 		computeRPN();
 		std::cout << _output << std::endl;
 
-	} catch (std::exception &e) {
+	} catch ( std::exception &e ) {
 		std::cerr << e.what();
 	}
 };

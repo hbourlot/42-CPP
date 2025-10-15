@@ -18,7 +18,7 @@ OBJ_DIR 		= obj/
 
 # -- Variables
 COMPILED_FILES 	= 0
-CPP_FUNC 		= computeRPN convertSignal main parseInput parseInvalidChars RPN run tokenizeInput ft_stof
+CPP_FUNC 		= computeRPN convertSignal main parseInput parseInvalidChars RPN run tokenizeInput ft_stof reverseStack
 SRC_FILES 		= $(addprefix $(SRC_DIR), $(CPP_FUNC:=.cpp))
 TOTAL_FILES 	= $(words $(SRC_FILES))
 OBJS_SRC        = $(addprefix $(OBJ_DIR), $(SRC_FILES:%.cpp=%.o))
@@ -99,7 +99,7 @@ targets =	8\ 9\ *\ 9\ -\ 9\ -\ 9\ -\ 4\ -\ 1\ + \
 			7\ 7\ *\ 7\ - \
 			1\ 2\ *\ 2\ /\ 2\ *\ 2\ 4\ -\ + \
 			1\ +\ 1 \
-			1\ 1\ +\ }
+			1\ 1\ +\ 
 
 mytarget:
 	@for t in $(targets); do \
