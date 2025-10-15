@@ -1,0 +1,17 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Format with clang-format",
+			"type": "shell",
+			"command": "clang-format -i $(find . -name '*.cpp' -o -name '*.hpp')",
+			"group": "build"
+		},
+		{
+			"label": "Format with clang-format (flatpak)",
+			"type": "shell",
+			"command": "flatpak-spawn --host bash -c \"clang-format -i $(find . -name '*.cpp' -o -name '*.hpp')\"",
+			"group": "build"
+		}
+	]
+}

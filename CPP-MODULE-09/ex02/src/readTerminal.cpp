@@ -1,14 +1,12 @@
 #include "PmergeMe.hpp"
-#include <sstream>
-#include <vector>
 
-static void callPmergeMeFromLine(const std::string &line) {
+static void callPmergeMeFromLine( const std::string &line ) {
 
-	std::istringstream iss(line);
+	std::istringstream iss( line );
 	std::list< std::string > tokens;
 	std::string token;
-	while (iss >> token) {
-		tokens.push_back(token);
+	while ( iss >> token ) {
+		tokens.push_back( token );
 	};
 
 	// build list<char*>
@@ -16,40 +14,40 @@ static void callPmergeMeFromLine(const std::string &line) {
 
 	// fake argv[0] = program name
 	std::string progname = "PmergeMe";
-	argv_list.push_back(const_cast< char * >(progname.c_str()));
+	argv_list.push_back( const_cast< char * >( progname.c_str() ) );
 
-	for (std::list< std::string >::iterator it = tokens.begin(); it != tokens.end(); ++it) {
-		argv_list.push_back(const_cast< char * >(it->c_str()));
+	for ( std::list< std::string >::iterator it = tokens.begin(); it != tokens.end(); ++it ) {
+		argv_list.push_back( const_cast< char * >( it->c_str() ) );
 	}
-	argv_list.push_back(nullptr);
+	argv_list.push_back( NULL );
 
-	std::vector< char * > argv_vector(argv_list.begin(), argv_list.end());
-	int argc = static_cast< int >(argv_vector.size()) - 1;
+	std::vector< char * > argv_vector( argv_list.begin(), argv_list.end() );
+	int argc = static_cast< int >( argv_vector.size() ) - 1;
 
-	pMergeMe(argc, argv_vector.data());
+	pMergeMe( argc, argv_vector.data() );
 }
 
-void readTerminal(int ac, char **av) {
+int readTerminal( int ac, char **av ) {
 
 	std::string command;
 
-	while (true) {
+	while ( true ) {
 		std::cout << "Chose an algorithm: 1 - Dijkstra, 2 - MergeInsertion\n" << std::endl;
 
 		std::cout << "> ";
-		if (!std::getline(std::cin, command))
+		if ( !std::getline( std::cin, command ) )
 			break;
 
-		if (command == "1") {
+		if ( command == "1" ) {
 			dijkstra();
-		} else if (command == "2") {
+		} else if ( command == "2" ) {
 			std::cout << "Enter numbers separated by spaces:" << std::endl;
 			std::cout << "> ";
 			std::string line;
-			if (!std::getline(std::cin, line))
+			if ( !std::getline( std::cin, line ) )
 				break;
-			callPmergeMeFromLine(line);
-		} else if (command == "quit" || command == "exit") {
+			callPmergeMeFromLine( line );
+		} else if ( command == "quit" || command == "exit" ) {
 			std::cout << "Exiting terminal input loop." << std::endl;
 			break;
 		} else {
@@ -58,4 +56,5 @@ void readTerminal(int ac, char **av) {
 	}
 
 	std::cout << std::endl;
+	return 0;
 };

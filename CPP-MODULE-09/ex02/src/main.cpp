@@ -1,45 +1,34 @@
 #include "PmergeMe.hpp"
-
+#include <vector>
+// Now i can use List and Vector
+// ! remove Deque
 int main( int ac, char *av[] ) {
 
-	if ( ac <= 1 )
+	if ( ac <= 1 ) {
 		return 0;
-
-	if ( BONUS ) {
-		readTerminal( ac, av );
-	} else {
-		std::list< int > containerL;
-		std::deque< int > containerD;
-		std::list< int > sorted;
-
-		try {
-			parseInput( av );
-
-			containerL = convertInputToContainer< std::list< int > >( av );
-			containerD = convertInputToContainer< std::deque< int > >( av );
-
-		} catch ( std::exception &e ) {
-			std::cout << e.what() << "\n";
-			return 1;
-		}
-
-		sorted = containerL;
-		std::cout << "Before: ";
-		displayContainer( sorted, 10 );
-
-		sorted = mergeInsertionAlgorithm< std::list< int >, std::list< Pair > >( sorted );
-
-		std::cout << "After : ";
-		displayContainer( sorted, 10 );
-
-		// --- Measure std::list ---
-		processContainerDisplay( containerL, "std::list",
-								 mergeInsertionAlgorithm< std::list< int >, std::list< Pair > > );
-
-		// --- Measure std::deque ---
-		processContainerDisplay( containerD, "std::deque",
-								 mergeInsertionAlgorithm< std::deque< int >, std::deque< Pair > > );
 	}
+
+	if ( BONUS )
+		return readTerminal( ac, av );
+
+	std::list< int > containerList;
+	std::vector< int > containervector;
+
+	try {
+
+		parseInput( av );
+		containerList = convertInputToContainer< std::list< int > >( av );
+		containervector = convertInputToContainer< std::vector< int > >( av );
+	} catch ( std::exception &e ) {
+		std::cout << e.what() << std::endl;
+
+		return 1;
+	}
+
+	std::list< int > sortedList;
+	std::cout << "Before: ";
+	displayContainer( containerList, 10 );
+	// sorted = 
 
 	return 0;
 }
