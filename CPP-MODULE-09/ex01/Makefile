@@ -11,20 +11,20 @@ CUT				= "\033[K"
 PRINT_CMD       = printf
 
 # -- Files and directories
-INCLUDE 		= inc/
+INCLUDE 		= ./
 HEADERS 		= $(shell find $(INCLUDE) -name "*.hpp")
-SRC_DIR 		= src/
+SRC_DIR 		= ./
 OBJ_DIR 		= obj/
 
 # -- Variables
 COMPILED_FILES 	= 0
-CPP_FUNC 		= computeRPN convertSignal main parseInput parseInvalidChars RPN run tokenizeInput ft_stof reverseStack
+CPP_FUNC 		=   main RPN
 SRC_FILES 		= $(addprefix $(SRC_DIR), $(CPP_FUNC:=.cpp))
 TOTAL_FILES 	= $(words $(SRC_FILES))
 OBJS_SRC        = $(addprefix $(OBJ_DIR), $(SRC_FILES:%.cpp=%.o))
 LIB 			= libRPN
 CXX 			= c++
-CXXFLAGS 		= -std=c++98 #-Wall -Wextra -Werror
+CXXFLAGS 		= -std=c++98 -Wall -Wextra -Werror
 NAME 			= RPN
 VALGRIND 		= valgrind -s --leak-check=full --show-leak-kinds=all --track-origins=yes --track-fds=yes
 

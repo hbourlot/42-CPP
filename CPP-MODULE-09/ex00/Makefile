@@ -11,14 +11,14 @@ CUT				= "\033[K"
 PRINT_CMD       = printf
 
 # -- Files and directories
-INCLUDE 		= inc/
+INCLUDE 		= ./
 HEADERS 		= $(shell find $(INCLUDE) -name "*.hpp")
-SRC_DIR 		= src/
+SRC_DIR 		= ./
 OBJ_DIR 		= obj/
 
 # -- Variables
 COMPILED_FILES 	= 0
-CPP_FUNC 		= BitcoinExchange checkDateFormat displayOutput getClosestRate getDate getValue loadBtcDatabase main openFile parseDateFormat processTransactions run utils
+CPP_FUNC 		= BitcoinExchange main
 SRC_FILES 		= $(addprefix $(SRC_DIR), $(CPP_FUNC:=.cpp))
 TOTAL_FILES 	= $(words $(SRC_FILES))
 OBJS_SRC        = $(addprefix $(OBJ_DIR), $(SRC_FILES:%.cpp=%.o))
