@@ -45,10 +45,9 @@ int main( int ac, char *av[] ) {
 	std::cout << "Before: ";
 
 	displayContainer( containerList, 4 );
-	std::cout << "After: ";
+	std::cout << "After : ";
 	std::list< int > afterList = fordJohnsonList(containerList);
 	displayContainer(afterList, 4);
-	// std::list< int > afterList = fordJohnsonList(containerList);
 	processContainerDisplay(containerList, "std::list ", fordJohnsonList);
 	processContainerDisplay(containerDeque, "std::deque", fordJohnsonDeque);
 	
