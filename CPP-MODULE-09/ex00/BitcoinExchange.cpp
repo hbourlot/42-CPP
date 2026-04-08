@@ -94,14 +94,19 @@ bool checkDateFormat( const std::string &date ) {
 
 	format = "%Y-%m-%d";
 
-	if (date.length() != 10 || date[4] != '-' || date[7] != '-')
-        return false;
+	std::string localDate = trim(date);
 	
+	if (localDate.length() != 10 || localDate[4] != '-' || localDate[7] != '-')
+        return false;
+
 	if ( !strptime( date.c_str(), format.c_str(), &tm ) )
 		return ERROR;
 	
+	int day;
+	std::string sday = localDate.substr(7 + 1);
+	day = atoi(sday.c_str());
 
-	if (tm.tm_mday > getDaywithMonth(tm.tm_year + 1900, tm.tm_mon))
+	if (day > getDaywithMonth(tm.tm_year + 1900, tm.tm_mon))
 		return ERROR;
 
 	return SUCCESS;
