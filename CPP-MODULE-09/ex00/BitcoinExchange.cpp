@@ -94,6 +94,8 @@ bool checkDateFormat( const std::string &date ) {
 
 	format = "%Y-%m-%d";
 
+	if (date.length() != 10 || date[4] != '-' || date[7] != '-')
+        return false;
 	
 	if ( !strptime( date.c_str(), format.c_str(), &tm ) )
 		return ERROR;
