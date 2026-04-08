@@ -65,7 +65,7 @@ namespace BtcError {
 	  public:
 		explicit Base(const std::string &msg) : std::runtime_error(msg) {
 		}
-		explicit Base(const std::string &msg, const std::string &input) : std::runtime_error(msg + " => " + input) {
+		explicit Base(const std::string &msg, const std::string &input) : std::runtime_error(msg + " '" + input + "'\n") {
 		}
 	};
 
@@ -73,8 +73,8 @@ namespace BtcError {
 	/// This exception is used to indicate file opening failures (e.g., missing or inaccessible files).
 	class OpenFile : public Base {
 	  public:
-		explicit OpenFile(const std::string &msg = "Could not open file") : Base(msg) {
-		}
+		explicit OpenFile(const std::string &file = "") : Base("Cout not open file", file) {
+		};
 	};
 
 	/// @brief Exception used when there is missing information in the input line.
