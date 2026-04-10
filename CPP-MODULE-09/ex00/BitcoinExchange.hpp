@@ -24,7 +24,7 @@
 #endif
 
 #ifndef VALUE_ERROR
-#define VALUE_ERROR -1.0f
+#define VALUE_ERROR -4.2f
 #endif
 
 enum unit { DAY, MONTH, YEAR };

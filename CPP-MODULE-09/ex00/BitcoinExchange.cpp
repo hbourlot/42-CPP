@@ -161,6 +161,10 @@ static bool parseBadInput( const std::string &line ) {
 
 static bool parseValue( float valueF ) {
 
+	if (valueF == VALUE_ERROR) {
+		std::cerr << "Error: invalid number." << std::endl;
+		return ERROR;
+	}
 	if ( valueF < 0 ) {
 		std::cerr << "Error: not a positive number." << std::endl;
 		return ERROR;
@@ -174,16 +178,36 @@ static bool parseValue( float valueF ) {
 	return SUCCESS;
 }
 
+static bool isHeader(std::string& line) {
+
+	size_t sepPos = line.find("|");
+
+	std::string date = line.substr(0, sepPos);
+	std::string value = line.substr(sepPos + 1);
+	if (trim(date) == "date" && trim(value) == "value") {
+		return true;
+	}
+	return false;
+}
+
 void BitcoinExchange::processTransactions( std::ifstream &inputFile ) {
 
 	size_t sepPos;
 	std::string line, date;
 	float rate, exchangeValue, value;
+	bool firstLine = true;
 
-	// Skip header
-	std::getline( inputFile, line );
-	std::cout << "\n";
 	while ( std::getline( inputFile, line ) ) {
+
+		if (firstLine) {
+			firstLine = false;
+			if (isHeader(line)) {
+				continue;
+			}
+		}
+
+		if (line.size() == 0)
+			continue;
 
 		if ( parseBadInput( line ) == ERROR ) {
 			std::cerr << "Error: bad input => " << line << std::endl;
@@ -194,6 +218,9 @@ void BitcoinExchange::processTransactions( std::ifstream &inputFile ) {
 
 		date = trim( line.substr( 0, sepPos ) );
 		value = getValue( line, '|' );
+		// if (value == VALUE_ERROR)
+		// 	continue;
+
 		if ( parseValue( value ) == ERROR )
 			continue;
 
@@ -322,7 +349,7 @@ float getClosestRate( const std::string &date, std::map< std::string, float > &b
 	}
 
 	if ( closestDate.empty() ) {
-		return -1.0f;
+		return VALUE_ERROR;
 	}
 
 	return closestValue;
