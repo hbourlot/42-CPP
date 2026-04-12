@@ -44,10 +44,11 @@ int main( int ac, char *av[] ) {
 	std::list< int > sortedList;
 	std::cout << "Before: ";
 
-	displayContainer( containerList, 4 );
+	displayContainer( containerList, 100 );
 	std::cout << "After : ";
-	std::list< int > afterList = fordJohnsonList(containerList);
-	displayContainer(afterList, 4);
+	// std::list< int > afterList = fordJohnsonList(containerList);
+	std::deque< int > afterDeque = fordJohnsonDeque(containerDeque);
+	displayContainer(afterDeque, 100);
 	processContainerDisplay(containerList, "std::list ", fordJohnsonList);
 	processContainerDisplay(containerDeque, "std::deque", fordJohnsonDeque);
 	

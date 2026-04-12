@@ -69,6 +69,7 @@ static std::list< int > recursiveSortAList( std::list< Pair >& pairs ) {
 		listA.push_back( uniquePair.a );
 	}
 	listA = fordJohnsonList( listA );
+
 	return std::list< int >( listA.begin(), listA.end() );
 }
 
@@ -130,6 +131,11 @@ static std::list< int > insertBsList( std::list< int > mainChain, const std::lis
 	return mainChain;
 };
 
+struct PairCmpA {
+    bool operator()(const Pair& x, const Pair& y) const { return x.a < y.a; }
+};
+
+
 std::list< int > fordJohnsonList( std::list< int > containerList ) {
 
 	bool hasLeftOver;
@@ -146,7 +152,10 @@ std::list< int > fordJohnsonList( std::list< int > containerList ) {
 	// Step 2 : recursively sort A
 	std::list< int > sortedA = recursiveSortAList( pairs );
 
-	// Step 3 : build main chain = {b1} U {sorted a's}
+	// Step 3 (part 1) : Name the elements a1,a2,...,a[n/2] same to b's... where b1 <= a1 and a1 <= a2 ... <= a[n/2]
+	pairs.sort(PairCmpA());
+
+	// Step 3  (part 2) : build main chain = {b1} U {sorted a's}
 	std::list< int > mainChain;
 	mainChain.push_back( pairs.front().b ); // first B
 	mainChain.insert( mainChain.end(), sortedA.begin(), sortedA.end() );
@@ -283,6 +292,9 @@ std::deque< int > fordJohnsonDeque( std::deque< int > containerList ) {
 
 	// Step 2 : recursively sort A
 	std::deque< int > sortedA = recursiveSortADeque( pairs );
+
+	std::sort(pairs.begin(), pairs.end(), PairCmpA());
+	// pairs.sort(PairCmpA());
 
 	// Step 3 : build main chain = {b1} U {sorted a's}
 	std::deque< int > mainChain;
